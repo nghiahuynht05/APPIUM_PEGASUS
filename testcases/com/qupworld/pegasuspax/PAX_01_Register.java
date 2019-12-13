@@ -63,6 +63,10 @@ public class PAX_01_Register extends AbstractTest {
         driver.findElementById("com.qupworld.pegasuspax:id/btnApply").click();
     }
 
+    @Test
+    public void Step_02_Register(){
+
+    }
 
 
 }
