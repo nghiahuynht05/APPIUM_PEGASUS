@@ -5,6 +5,7 @@ import commons.AbstractTest;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.LongPressOptions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -18,15 +19,17 @@ import java.util.concurrent.TimeUnit;
 public class PAX_01_Register extends AbstractTest {
     AndroidDriver driver;
     private AbstractModule abstractModule;
+    String phoneNumber;
 
     @BeforeClass
     public void beforeClass(){
+
 //    driver = configPax(driver);
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("deviceName", "21d5ac3d19037ece");
         cap.setCapability("platformName", "Android");
         cap.setCapability("platformVersion", "9");
-        cap.setCapability("appPackage", "com.qupworld.pegasuspax");
+        cap.setCapability("appPackage", "com.mycar.passenger");
         cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
         cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("autoGrantPermissions", "true");
@@ -50,8 +53,7 @@ public class PAX_01_Register extends AbstractTest {
         driver.findElementById("com.qupworld.pegasuspax:id/editPhoneWC").click();
         WebElement fleetCodeDriver = driver.findElement(By.xpath("//android.view.ViewGroup[@index='1']/android.widget.TextView[@index='1']"));
         TouchAction action = new TouchAction(driver);
-        action.longPress(fleetCodeDriver);
-        action.perform();
+        action.longPress((LongPressOptions) fleetCodeDriver).perform();
         driver.findElementById("com.qupworld.pegasuspax:id/edtPassCode").sendKeys("7620");
         driver.hideKeyboard();
         driver.findElementById("android:id/button1").click();
