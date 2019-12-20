@@ -1,4 +1,4 @@
-package moduleObjects;
+package pageObjects;
 
 public class SwitchServerInternalPO {
 }
