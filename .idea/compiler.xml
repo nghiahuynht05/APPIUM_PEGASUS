@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="comqupworldpegasus" />
+        <module name="com.qupworld.pegasus" />
       </profile>
     </annotationProcessing>
   </component>

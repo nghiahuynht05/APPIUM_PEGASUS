@@ -6,12 +6,13 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class AbstractTest {
     public AndroidDriver driver;
 
-    public AndroidDriver configPax(){
+    public AndroidDriver configPax() {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("deviceName", "21d5ac3d19037ece");
         cap.setCapability("platformName", "Android");
@@ -33,5 +34,10 @@ public class AbstractTest {
         }
         driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         return driver;
+    }
+
+    public int randomNumber2Digit() {
+        Random random = new Random();
+        return random.nextInt(99);
     }
 }
