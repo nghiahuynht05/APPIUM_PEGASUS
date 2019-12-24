@@ -1,6 +1,4 @@
-package pageUI;
-
-import commons.AbstractPage;
+package interfaces;
 
 public class LoginPageUI {
 

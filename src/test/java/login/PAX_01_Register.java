@@ -3,20 +3,14 @@ package login;
 import commons.AbstractPage;
 import commons.AbstractTest;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.LongPressOptions;
 
 import static org.junit.Assert.assertTrue;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pageObjects.LoginPO;
-import pageUI.LoginPageUI;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -118,8 +112,13 @@ public class PAX_01_Register extends AbstractTest {
         assertTrue(loginPage.isThereHomeButtonPresent());
     }
 
+    @Test
+    public void Step_03_Logout(){
+        System.out.print(dtf.format(now) + "Logout - Step 1: ");
+    }
+
 //    @Test
-    public void Step_03_LoginWithNewAccount() {
+    public void Step_04_LoginWithNewAccount() {
         System.out.print(dtf.format(now) + "Login - Step 2: Select country phone code");
         loginPage.selectPhoneCode(countryName);
         System.out.print(dtf.format(now) + "Login - Step 3: Login to Pax app");

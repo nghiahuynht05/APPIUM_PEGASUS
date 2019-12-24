@@ -2,8 +2,7 @@ package pageObjects;
 
 import commons.AbstractPage;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.WebDriver;
-import pageUI.LoginPageUI;
+import interfaces.LoginPageUI;
 
 public class LoginPO extends AbstractPage {
     private AbstractPage abstractPage;

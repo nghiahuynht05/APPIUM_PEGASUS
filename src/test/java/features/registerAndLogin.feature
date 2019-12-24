@@ -1,0 +1,1 @@
+Feature: Register new account
