@@ -1,5 +1,6 @@
 package commons;
 
+import interfaces.AbstractPageUI;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -24,12 +25,14 @@ public class AbstractPage {
     List<WebElement> elements;
     By by;
     public long longTimeout = 30;
-    public long shortTimeout = 5;
+    public long shortTimeout = 3;
     public static String appPackageId, appName;
     public String appPackage = "mycar";
+    AbstractPageUI abstractUI;
 
     public AbstractPage(AndroidDriver driver) {
         this.driver = driver;
+        abstractUI = new AbstractPageUI();
     }
 
     public void sleepInSecond(long numberInSecond) {
@@ -91,7 +94,6 @@ public class AbstractPage {
     }
 
 
-
     // Internal methods
     public static WebElement waitElementToBeClickableByLocator(
             WebDriver driver, WebElement element) {
@@ -123,11 +125,38 @@ public class AbstractPage {
         }
     }
 
+    public boolean checkElementDisplayedById(AndroidDriver driver, String locator, int time){
+        try {
+            By elementId = By.id(locator);
+            WebDriverWait wait = new WebDriverWait(driver, time);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(elementId));
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean isElementDisplayedById(String locator){
+        locator = String.format(locator, appPackageId);
+        element = driver.findElementById(locator);
+        return element.isDisplayed();
+    }
+
     public boolean isMessageContainsById(String locator, String expectedText){
         locator = String.format(locator, appPackageId);
         element = driver.findElement(By.id(locator));
         String actualMsg = element.getText();
         return actualMsg.contains(expectedText);
+    }
+
+    public void checkBannerAndClose(){
+        boolean bannerDisplay = checkElementPresentById(abstractUI.BANNER);
+        System.out.println(bannerDisplay);
+        if (bannerDisplay==true){
+            String locator = String.format(abstractUI.BANNER_CLOSE_BUTTON, appPackageId);
+            element = driver.findElementById(locator);
+            element.click();
+        }
     }
 
 

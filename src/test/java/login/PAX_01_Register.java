@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pageObjects.HomePO;
 import pageObjects.LoginPO;
 
 import java.net.MalformedURLException;
@@ -23,6 +24,7 @@ public class PAX_01_Register extends AbstractTest {
     String server, phoneNumber, fleetCode, passCode, defaultcode, countryName, firstName, lastName, gender;
     public AbstractPage abstractPage;
     public LoginPO loginPage;
+    public HomePO homePage;
 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
@@ -47,9 +49,9 @@ public class PAX_01_Register extends AbstractTest {
         cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
         cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("autoGrantPermissions", "true");
-        cap.setCapability("skipDeviceInitialization", "false");
-        cap.setCapability("skipServerInstallation", "false");
-        cap.setCapability("noReset", "false");
+        cap.setCapability("skipDeviceInitialization", "true");
+        cap.setCapability("skipServerInstallation", "true");
+        cap.setCapability("noReset", "true");
         try {
             driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
         } catch (
@@ -60,53 +62,53 @@ public class PAX_01_Register extends AbstractTest {
 
         abstractPage = new AbstractPage(driver);
         loginPage = new LoginPO(driver);
+        homePage = new HomePO(driver);
     }
 
-    @Test
+//    @Test
     public void Step_01_SelectServer() {
         abstractPage.sendAppPackage();
 
         loginPage.clickToPhoneNumberTextbox();
-
-        System.out.println(dtf.format(now) + "Precondition: Change server -  Step 1: Long press to open debug page");
+        printLog("Precondition: Change server -  Step 1: Long press to open debug page");
         loginPage.longPressToDebugArea();
         loginPage.inputToPassCodeTextbox(passCode);
         loginPage.clickToYesNoButton("YES");
 
-        System.out.println(dtf.format(now) + "Precondition: Change server -  Step 2: Select server and input fleet code");
+        printLog("Precondition: Change server -  Step 2: Select server and input fleet code");
         abstractPage.sleepInSecond(1);
         loginPage.selectServer(server, fleetCode);
-        System.out.println(dtf.format(now) + "Precondition: Change server -  Step 3: Verify the server has changed");
+        printLog("Precondition: Change server -  Step 3: Verify the server has changed");
         assertTrue(loginPage.isLoginPagePresent());
     }
 
-    @Test
+//    @Test
     public void Step_02_Register(){
-        System.out.print(dtf.format(now) + "Register - Step 1: Select country phone code");
+        printLog("Register - Step 1: Select country phone code");
         loginPage.selectPhoneCode(countryName);
 
-        System.out.print(dtf.format(now) + "Register - Step 2: Input new phone number");
+        printLog("Register - Step 2: Input new phone number");
         loginPage.inputToPhoneNumberTextbox(phoneNumber);
 
-        System.out.print(dtf.format(now) + "Register - Step 2: Agree ToU and register");
+        printLog("Register - Step 2: Agree ToU and register");
         loginPage.clickToAgreeToUAndPolicy();
         loginPage.clickToLoginButton();
         loginPage.clickToYesNoButton("Yes");
 
-        System.out.print(dtf.format(now) + "Register - Step 3: Input sms code");
+        printLog("Register - Step 3: Input sms code");
         loginPage.inputSMSDefaultCode(defaultcode);
 
-        System.out.print(dtf.format(now) + "Register - Step 4: Verify register message");
+        printLog("Register - Step 4: Verify register message");
         loginPage.isWelcomeMsgContains("Welcome to " + loginPage.appName + "Please complete your profile to starting using the service.");
         loginPage.clickToYesNoButton("OK");
 
-        System.out.print(dtf.format(now) + "Register - Step 5: Fill info to register");
+        printLog("Register - Step 5: Fill info to register");
         loginPage.inputToRegisterTextboxes("First name", firstName);
         loginPage.inputToRegisterTextboxes("Last name", lastName);
         loginPage.selectGender(gender);
         loginPage.clickToSaveButton();
 
-        System.out.print(dtf.format(now) + "Register - Step 6: Verify register successfully");
+        printLog("Register - Step 6: Verify register successfully");
         loginPage.clickToSkipButton();
         loginPage.clickToYesNoButton("Yes");
         assertTrue(loginPage.isThereHomeButtonPresent());
@@ -114,22 +116,30 @@ public class PAX_01_Register extends AbstractTest {
 
     @Test
     public void Step_03_Logout(){
-        System.out.print(dtf.format(now) + "Logout - Step 1: ");
+        abstractPage.sendAppPackage();
+        abstractPage.sleepInSecond(8);
+        printLog("Logout - Step 1: Press Home button (avatar)");
+        homePage.logout();
+
+        printLog("Logout - Step 3: Verify logout successfully");
+        homePage.isLoginFormDisplayed();
     }
 
 //    @Test
     public void Step_04_LoginWithNewAccount() {
-        System.out.print(dtf.format(now) + "Login - Step 2: Select country phone code");
+        printLog("Login - Step 2: Select country phone code");
         loginPage.selectPhoneCode(countryName);
-        System.out.print(dtf.format(now) + "Login - Step 3: Login to Pax app");
+
+        printLog("Login - Step 3: Login to Pax app");
         loginPage.inputToPhoneNumberTextbox(phoneNumber);
         loginPage.clickToAgreeToUAndPolicy();
         loginPage.clickToLoginButton();
         loginPage.clickToYesNoButton("Yes");
-        System.out.print(dtf.format(now) + "Login - Step 4: Input sms code if require");
+
+        printLog("Login - Step 4: Input sms code if require");
         loginPage.inputSMSDefaultCode(defaultcode);
 
-        System.out.print(dtf.format(now) + "Login - Step 5: Verify login successfully");
+        printLog("Login - Step 5: Verify login successfully");
         assertTrue(loginPage.isThereHomeButtonPresent());
     }
 
