@@ -2,88 +2,152 @@ package stepDefinitions;
 
 import commons.AbstractPage;
 import commons.AbstractTest;
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.junit.Cucumber;
-import cucumberOptions.Hooks;
+//import cucumberOptions.Hooks;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import pageObjects.HomePO;
 import pageObjects.LoginPO;
 
-import static org.junit.Assert.assertTrue;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import static org.testng.Assert.assertTrue;
 
 
 @RunWith(Cucumber.class)
 public class RegisterAndLoginSteps {
     AndroidDriver driver;
-    AbstractTest abstractTest;
     AbstractPage abstractPage;
     LoginPO loginPage;
+    HomePO homePage;
+
+    String packageApp, passCode, defaultCode;
 
     public RegisterAndLoginSteps() {
-        driver = Hooks.openPaxApp("mycar");
+//        driver = Hooks.openPaxApp("mycar");
+        passCode = "7620";
+        defaultCode = "2304";
     }
 
-    @Given("^I open the Pax app$")
-    public void i_open_the_pax_app() {
+    @Given("^I open the \"([^\"]*)\" Pax app for the first time$")
+    public void iOpenThePaxAppForTheFirstTime(String appName) {
+        if(appName.equalsIgnoreCase("mycar")){
+            packageApp = "com.mycar.passenger";
+        }else if(appName.equalsIgnoreCase("pegasus")){
+            packageApp = "com.qupworld.pegasuspax";
+        }
+
+        DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setCapability("deviceName", "21d5ac3d19037ece");
+        cap.setCapability("platformName", "Android");
+        cap.setCapability("platformVersion", "9");
+        cap.setCapability("appPackage", packageApp);
+        cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
+        cap.setCapability("automationName", "UiAutomator2");
+        cap.setCapability("autoGrantPermissions", "true");
+        cap.setCapability("skipDeviceInitialization", "true");
+        cap.setCapability("skipServerInstallation", "true");
+        cap.setCapability("noReset", "false");
+        try {
+            driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
+        } catch (
+                MalformedURLException e) {
+            e.printStackTrace();
+        }
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+        abstractPage = new AbstractPage(driver);
+        loginPage = new LoginPO(driver);
+        homePage = new HomePO(driver);
+
         abstractPage.sendAppPackage();
-        Hooks.openPaxApp("mycar");
     }
 
     @When("^I select the phone code by \"([^\"]*)\" country$")
-    public void i_select_the_phone_code_by_something_country(String countryName) {
+    public void iSelectThePhoneCodeByCountry(String countryName) {
         loginPage.selectPhoneCode(countryName);
     }
 
     @Then("^I verify the passenger register successfully$")
-    public void i_verify_the_passenger_register_successfully() {
+    public void iVerifyThePassengerRegisterSuccessfully() {
         loginPage.clickToSkipButton();
         loginPage.clickToYesNoButton("Yes");
         assertTrue(loginPage.isThereHomeButtonPresent());
     }
 
     @And("^I select \"([^\"]*)\" server and input \"([^\"]*)\" fleet code$")
-    public void i_select_something_server_and_input_something_fleet_code(String server, String fleetCode) {
+    public void iSelectServerAndInputFleetCode(String server, String fleetCode) {
+        loginPage.longPressToDebugArea();
+        loginPage.inputToPassCodeTextbox(passCode);
+        loginPage.clickToYesNoButton("YES");
         loginPage.selectServer(server, fleetCode);
+        assertTrue(loginPage.isLoginPagePresent());
     }
 
-    @And("^I input a new phone number \"([^\"]*)\"$")
-    public void i_input_a_new_phone_number_something(String phoneNumber) {
+    @And("^I click to phone number text box$")
+    public void iClickToPhoneNumberTextBox() {
+        loginPage.clickToPhoneNumberTextbox();
+    }
+
+    @And("^I input phone number \"([^\"]*)\"$")
+    public void iInputPhoneNumber(String phoneNumber) {
         loginPage.inputToPhoneNumberTextbox(phoneNumber);
     }
 
 
     @And("^I agree with Term of use and Privacy policy$")
-    public void i_agree_with_term_of_use_and_privacy_policy() {
+    public void iAgreeWithTermOfUseAndPrivacyPolicy() {
         loginPage.clickToAgreeToUAndPolicy();
     }
 
     @And("^I click to continue button$")
-    public void i_click_to_continue_button() {
+    public void iClickToContinueButton() {
         loginPage.clickToLoginButton();
+        loginPage.clickToYesNoButton("Yes");
     }
 
-    @And("^I input sms code \"([^\"]*)\"$")
-    public void i_input_sms_code_something(String defaultCode) {
+    @And("^I input sms verify code if have$")
+    public void iInputSmsVerifyCodeIfHave(){
         loginPage.inputSMSDefaultCode(defaultCode);
     }
 
     @And("^I verify register message contains \"([^\"]*)\"$")
-    public void i_verify_register_message_contains_something(String textContains) {
-        loginPage.isWelcomeMsgContains(textContains);
+    public void iVerifyRegisterMessageContains(String textContains) {
+        assertTrue(loginPage.isWelcomeMsgContains(textContains));
+        loginPage.clickToYesNoButton("OK");
     }
 
-    @And("^I input \"([^\"]*)\", \"([^\"]*)\" and select \"([^\"]*)\"$")
-    public void i_input_something_something_and_select_something(String firstName, String lastName, String gender) {
-        loginPage.inputToRegisterTextboxes("First name", firstName);
-        loginPage.inputToRegisterTextboxes("Last name", lastName);
-        loginPage.selectGender(gender);
+    @And("^I input user information to register$")
+    public void i_input_user_information_to_register(DataTable customerTable) {
+        List<Map<String, String>> customer = customerTable.asMaps(String.class, String.class);
+        loginPage.inputToRegisterTextboxes("First name", customer.get(0).get("firstName"));
+        loginPage.inputToRegisterTextboxes("Last name", customer.get(0).get("lastName"));
+        loginPage.selectGender(customer.get(0).get("gender"));
     }
 
     @And("^I click to save button$")
-    public void i_click_to_save_button() {
+    public void iClickToSaveButton() {
         loginPage.clickToSaveButton();
+    }
+
+    @Then("^I verify the passenger login successfully$")
+    public void i_verify_the_passenger_login_successfully() {
+        assertTrue(loginPage.isThereHomeButtonPresent());
+    }
+
+    @And("^I logout of the account$")
+    public void i_logout_of_the_account() {
+        homePage.logout();
     }
 }
