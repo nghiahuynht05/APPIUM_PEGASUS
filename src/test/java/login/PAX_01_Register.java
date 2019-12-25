@@ -143,5 +143,6 @@ public class PAX_01_Register extends AbstractTest {
         assertTrue(loginPage.isThereHomeButtonPresent());
     }
 
+    
 
 }

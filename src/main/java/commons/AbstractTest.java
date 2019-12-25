@@ -13,16 +13,22 @@ import java.util.concurrent.TimeUnit;
 
 public class AbstractTest {
     public AndroidDriver driver;
+    String packageApp;
 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
 
-    public AndroidDriver configPax() {
+    public AndroidDriver openPax(String appName) {
+        if (appName.equalsIgnoreCase("mycar")){
+            packageApp = "com.mycar.passenger";
+        }else if (appName.equalsIgnoreCase("pegasus")){
+            packageApp = "com.qupworld.pegasuspax";
+        }
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("deviceName", "21d5ac3d19037ece");
         cap.setCapability("platformName", "Android");
         cap.setCapability("platformVersion", "9");
-        cap.setCapability("appPackage", "com.qupworld.pegasuspax");
+        cap.setCapability("appPackage", packageApp);
         cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
         cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("autoGrantPermissions", "true");
