@@ -7,21 +7,31 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class HomePO extends AbstractPage {
     private AbstractPage abstractPage;
-    private HomePageUI homePage;
-    private LoginPageUI loginPage;
 
     public HomePO(AndroidDriver driver) {
         super(driver);
     }
 
-    public void logout(){
-        clickToElementById(homePage.HOME_BUTTON);
-        clickToElementById(homePage.PERSONAL_BUTTON);
+    public void logout() {
+        clickToElementById(HomePageUI.HOME_BUTTON);
+        clickToElementById(HomePageUI.PERSONAL_BUTTON);
         checkBannerAndClose();
-        clickToElementById(homePage.LOGOUT_BUTTON);
+        clickToElementById(HomePageUI.LOGOUT_BUTTON);
     }
 
-    public boolean isLoginFormDisplayed(){
-        return checkElementPresentById(loginPage.PHONE_NUMBER_TEXTBOX_1ST_SCREEN);
+    public boolean isLoginFormDisplayed() {
+        return checkElementPresentById(LoginPageUI.PHONE_NUMBER_TEXTBOX_1ST_SCREEN);
+    }
+
+    public boolean isCarImgDisplayed() {
+        return isElementDisplayedById(HomePageUI.CAR_IMAGE);
+    }
+
+    public boolean isCarNameDisplayed(){
+        return isElementDisplayedById(HomePageUI.CAR_NAME);
+    }
+
+    public boolean isCarMaxOfSeatDisplayed(){
+        return isElementDisplayedById(HomePageUI.MAX_OF_SEAT);
     }
 }
