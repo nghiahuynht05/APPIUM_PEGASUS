@@ -1,27 +1,23 @@
-package commons;
+package cucumberOptions;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.junit.Before;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class AbstractTest {
-    public AndroidDriver driver;
-    String packageApp;
+public class Hooks {
+    private static AndroidDriver driver;
+    private static String packageApp;
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
-
-    public AndroidDriver openPax(String appName) {
-        if (appName.equalsIgnoreCase("mycar")){
+    @Before
+    public synchronized static AndroidDriver openPaxApp(String appName){
+        if(appName.equals("mycar")){
             packageApp = "com.mycar.passenger";
-        }else if (appName.equalsIgnoreCase("pegasus")){
+        }else if (appName.equals("pegasus")){
             packageApp = "com.qupworld.pegasuspax";
         }
         DesiredCapabilities cap = new DesiredCapabilities();
@@ -45,14 +41,5 @@ public class AbstractTest {
         }
         driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         return driver;
-    }
-
-    public void printLog(String logContent){
-        System.out.println(dtf.format(now) + ":  " + logContent);
-    }
-
-    public int randomNumber2Digit() {
-        Random random = new Random();
-        return random.nextInt(99);
     }
 }
