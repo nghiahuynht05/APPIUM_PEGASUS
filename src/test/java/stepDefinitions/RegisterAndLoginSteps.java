@@ -49,15 +49,15 @@ public class RegisterAndLoginSteps {
         }
 
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("deviceName", "21d5ac3d19037ece");
+        cap.setCapability("deviceName", "HT69H0201382");
         cap.setCapability("platformName", "Android");
-        cap.setCapability("platformVersion", "9");
+        cap.setCapability("platformVersion", "10");
         cap.setCapability("appPackage", packageApp);
         cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
         cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("autoGrantPermissions", "true");
-        cap.setCapability("skipDeviceInitialization", "true");
-        cap.setCapability("skipServerInstallation", "true");
+        cap.setCapability("skipDeviceInitialization", "false");
+        cap.setCapability("skipServerInstallation", "false");
         cap.setCapability("noReset", "false");
         try {
             driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
@@ -74,8 +74,8 @@ public class RegisterAndLoginSteps {
         abstractPage.sendAppPackage();
     }
 
-    @When("^I select the phone code by \"([^\"]*)\" country$")
-    public void iSelectThePhoneCodeByCountry(String countryName) {
+    @When("^I select the phone code by \"([^\"]*)\" country if different$")
+    public void iSelectThePhoneCodeByCountryIfDifferent(String countryName) {
         loginPage.selectPhoneCode(countryName);
     }
 

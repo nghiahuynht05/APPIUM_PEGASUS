@@ -93,6 +93,17 @@ public class AbstractPage {
         actions.perform();
     }
 
+    public String getTextElementById(String locator){
+        locator = String.format(locator, appPackageId);
+        element = driver.findElement(By.id(locator));
+        String actualText = element.getText();
+        return actualText;
+    }
+
+
+
+
+
 
     // Internal methods
     public static WebElement waitElementToBeClickableByLocator(

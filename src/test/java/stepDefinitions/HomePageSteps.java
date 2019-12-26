@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import commons.AbstractPage;
+import commons.ModuleGeneratorManager;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -27,6 +28,9 @@ public class HomePageSteps {
     HomePO homePage;
     String packageApp;
 
+    public HomePageSteps(AndroidDriver driver){
+        this.driver = driver;
+    }
 
     @Given("^I open the \"([^\"]*)\" Pax app$")
     public void iOpenThePaxApp(String appName) {
@@ -68,6 +72,7 @@ public class HomePageSteps {
 
     @Then("^I should see the car image$")
     public void iShouldSeeTheCarImage() {
+        homePage = ModuleGeneratorManager.getHomePage(driver);
         assertTrue(homePage.isCarImgDisplayed());
     }
 

@@ -5,9 +5,10 @@ Feature: Check car type on map
 
   Scenario: 01 - Check car type on map
 
-    Given I open the "mycar" Pax app
+    Given I open the "Mycar" Pax app for the first time
     When I click to phone number text box
-    And I select the phone code by "Vietnam" country
+    And I select "beta" server and input "tamqa" fleet code
+    And I select the phone code by "Vietnam" country if different
     And I input phone number "0356822833"
     And I agree with Term of use and Privacy policy
     And I click to continue button

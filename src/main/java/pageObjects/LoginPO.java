@@ -7,6 +7,7 @@ import interfaces.LoginPageUI;
 public class LoginPO extends AbstractPage {
     private AbstractPage abstractPage;
     private LoginPageUI loginPageUI;
+    String phoneCode;
 
     public LoginPO(AndroidDriver driver) {
         super(driver);
@@ -98,9 +99,21 @@ public class LoginPO extends AbstractPage {
     }
 
     public void selectPhoneCode(String countryName){
-        clickToElementById(loginPageUI.SELECT_PHONE_CODE_BUTTON);
-        sendKeyToElementById(loginPageUI.SEARCH_COUNTRY_PHONE_TEXTBOX, countryName);
-        clickToElementByXpath(loginPageUI.COUNTRY_PHONE_CODE, countryName);
+        if(countryName.equalsIgnoreCase("Vietnam")){
+            phoneCode = "+84";
+        }else if(countryName.equalsIgnoreCase("Malaysia")){
+            phoneCode = "+60";
+        }else if(countryName.equalsIgnoreCase("United State")){
+            phoneCode = "+1";
+        }
+
+        String phoneCodeValue = getTextElementById(loginPageUI.PHONE_CODE_LABEL);
+        //Only change country phone code if the current phone code different with the phone code expected
+        if(!phoneCodeValue.equals(phoneCode)){
+            clickToElementById(loginPageUI.SELECT_PHONE_CODE_BUTTON);
+            sendKeyToElementById(loginPageUI.SEARCH_COUNTRY_PHONE_TEXTBOX, countryName);
+            clickToElementByXpath(loginPageUI.COUNTRY_PHONE_CODE, countryName);
+        }
     }
 
     public void inputToRegisterTextboxes(String nameField, String textValue){
