@@ -35,15 +35,12 @@ public class AbstractTest {
         cap.setCapability("skipDeviceInitialization", "false");
         cap.setCapability("skipServerInstallation", "false");
         cap.setCapability("noReset", "false");
-
-
         try {
             driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
         } catch (
                 MalformedURLException e) {
             e.printStackTrace();
         }
-        driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
         return driver;
     }
 

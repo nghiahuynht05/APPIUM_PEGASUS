@@ -4,8 +4,7 @@ Feature: Register new account and login
   I want to register and login to the application normally
 
   Scenario: 01 - Register and Login to passenger application
-    Given I open the "Mycar" Pax app for the first time
-    And I click to phone number text box
+    Given I click to phone number text box
     And I select "beta" server and input "tamqa" fleet code
     When I select the phone code by "Vietnam" country if different
     And I input phone number "357888439"
