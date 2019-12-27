@@ -8,11 +8,12 @@ public class LoginPageUI {
     public static final String PASS_CODE_TEXTBOX = "%sedtPassCode";
     public static final String YES_NO_BUTTON = "//android.widget.Button[@text='%s']";
 
-    public static final String DYNAMIC_SERVERS_TAB = "//androidx.appcompat.app.ActionBar.Tab[@content-desc='%s']";
+    public static final String DYNAMIC_SERVERS_TAB = "//android.widget.TextView[@text='%s']";
     public static final String FLEET_ID_TEXTBOX = "%sedtFleetId";
     public static final String APPLY_BUTTON = "%sbtnApply";
 
     public static final String SELECT_PHONE_CODE_BUTTON = "%stvFlag";
+    public static final String PHONE_CODE_LABEL = "%stvCountry";
     public static final String SEARCH_COUNTRY_PHONE_TEXTBOX = "%ssearch_src_text";
     public static final String COUNTRY_PHONE_CODE = "//android.widget.TextView[@text='%s']";
     public static final String PHONE_NUMBER_TEXTBOX_LOGIN = "%seditPhone";

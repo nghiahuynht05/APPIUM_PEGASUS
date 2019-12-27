@@ -31,13 +31,19 @@ public class RegisterAndLoginSteps {
     AbstractPage abstractPage;
     LoginPO loginPage;
     HomePO homePage;
+    String appTest;
 
     String packageApp, passCode, defaultCode;
 
-    public RegisterAndLoginSteps() {
-//        driver = Hooks.openPaxApp("mycar");
+    public RegisterAndLoginSteps(AndroidDriver driver) {
+        this.driver = driver;
         passCode = "7620";
         defaultCode = "2304";
+        abstractPage = new AbstractPage(driver);
+        loginPage = new LoginPO(driver);
+        homePage = new HomePO(driver);
+
+        abstractPage.sendAppPackage();
     }
 
     @Given("^I open the \"([^\"]*)\" Pax app for the first time$")
@@ -49,15 +55,15 @@ public class RegisterAndLoginSteps {
         }
 
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("deviceName", "21d5ac3d19037ece");
+        cap.setCapability("deviceName", "HT69H0201382");
         cap.setCapability("platformName", "Android");
-        cap.setCapability("platformVersion", "9");
+        cap.setCapability("platformVersion", "10");
         cap.setCapability("appPackage", packageApp);
         cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
         cap.setCapability("automationName", "UiAutomator2");
         cap.setCapability("autoGrantPermissions", "true");
-        cap.setCapability("skipDeviceInitialization", "true");
-        cap.setCapability("skipServerInstallation", "true");
+        cap.setCapability("skipDeviceInitialization", "false");
+        cap.setCapability("skipServerInstallation", "false");
         cap.setCapability("noReset", "false");
         try {
             driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
@@ -65,17 +71,11 @@ public class RegisterAndLoginSteps {
                 MalformedURLException e) {
             e.printStackTrace();
         }
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        abstractPage = new AbstractPage(driver);
-        loginPage = new LoginPO(driver);
-        homePage = new HomePO(driver);
-
-        abstractPage.sendAppPackage();
     }
 
-    @When("^I select the phone code by \"([^\"]*)\" country$")
-    public void iSelectThePhoneCodeByCountry(String countryName) {
+    @When("^I select the phone code by \"([^\"]*)\" country if different$")
+    public void iSelectThePhoneCodeByCountryIfDifferent(String countryName) {
         loginPage.selectPhoneCode(countryName);
     }
 
@@ -88,6 +88,7 @@ public class RegisterAndLoginSteps {
 
     @And("^I select \"([^\"]*)\" server and input \"([^\"]*)\" fleet code$")
     public void iSelectServerAndInputFleetCode(String server, String fleetCode) {
+        loginPage.clickToPhoneNumberTextbox();
         loginPage.longPressToDebugArea();
         loginPage.inputToPassCodeTextbox(passCode);
         loginPage.clickToYesNoButton("YES");
@@ -95,7 +96,7 @@ public class RegisterAndLoginSteps {
         assertTrue(loginPage.isLoginPagePresent());
     }
 
-    @And("^I click to phone number text box$")
+    @Given("^I click to phone number text box$")
     public void iClickToPhoneNumberTextBox() {
         loginPage.clickToPhoneNumberTextbox();
     }
@@ -129,7 +130,7 @@ public class RegisterAndLoginSteps {
     }
 
     @And("^I input user information to register$")
-    public void i_input_user_information_to_register(DataTable customerTable) {
+    public void iInputUserInformationToRegister(DataTable customerTable) {
         List<Map<String, String>> customer = customerTable.asMaps(String.class, String.class);
         loginPage.inputToRegisterTextboxes("First name", customer.get(0).get("firstName"));
         loginPage.inputToRegisterTextboxes("Last name", customer.get(0).get("lastName"));
@@ -142,12 +143,12 @@ public class RegisterAndLoginSteps {
     }
 
     @Then("^I verify the passenger login successfully$")
-    public void i_verify_the_passenger_login_successfully() {
+    public void iVerifyThePassengerLoginSuccessfully() {
         assertTrue(loginPage.isThereHomeButtonPresent());
     }
 
     @And("^I logout of the account$")
-    public void i_logout_of_the_account() {
+    public void iLogoutOfTheAccount() {
         homePage.logout();
     }
 }
