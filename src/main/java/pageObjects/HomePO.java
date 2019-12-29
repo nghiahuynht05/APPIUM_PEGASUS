@@ -4,13 +4,13 @@ import commons.AbstractPage;
 import interfaces.HomePageUI;
 import interfaces.LoginPageUI;
 import io.appium.java_client.android.AndroidDriver;
+import org.seleniumhq.jetty9.util.HostMap;
 
 public class HomePO extends AbstractPage {
     private AbstractPage abstractPage;
 
     public HomePO(AndroidDriver driver) {
         super(driver);
-
     }
 
     public void logout() {
@@ -34,5 +34,37 @@ public class HomePO extends AbstractPage {
 
     public boolean isCarMaxOfSeatDisplayed(){
         return isElementDisplayedById(HomePageUI.MAX_OF_SEAT);
+    }
+
+    public boolean isPUEqualsCurrentLocation(){
+        String currentGPS = getTextElementById(HomePageUI.CURRENT_LOCATION_LABEL);
+        if(currentGPS.contains("2 Quang Trung")){
+            return true;
+        }else if(currentGPS.contains("2 Quang Cự")){
+            return true;
+        }else if (currentGPS.contains("3 Đường Phan Chu Trinh")){
+            return true;
+        }else if(currentGPS.contains("322 Hải Phòng")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void moveMap(){
+        actionMove();
+    }
+
+    public boolean isThePUWasChanged(){
+        return checkElementPresentById(HomePageUI.BACK_TO_CURRENT_GPS_BUTTON);
+    }
+
+    public void clickToCurrentGPSButton(){
+        clickToElementById(HomePageUI.BACK_TO_CURRENT_GPS_BUTTON);
+    }
+
+    public void clickToViewAllButton(){
+        clickToElementById(HomePageUI.VIEW_ALL_BUTTON);
     }
 }

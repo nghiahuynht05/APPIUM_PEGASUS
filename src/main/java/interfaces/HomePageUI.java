@@ -5,7 +5,18 @@ public class HomePageUI {
     public static final String PERSONAL_BUTTON = "%simvAvatar";
     public static final String LOGOUT_BUTTON = "%stvLogout";
 
+    //MENUS
+    public static final String MENU_BUTTONS = "//android.widget.CheckedTextView[contains(@text, '%s')]";
+
     public static final String CAR_IMAGE = "%simvVehicle";
     public static final String CAR_NAME = "%stv_vehicle";
     public static final String MAX_OF_SEAT = "%stv_seat";
+    public static final String VIEW_ALL_BUTTON = "%sview_all";
+
+    public static final String CURRENT_LOCATION_LABEL = "%stvAddress";
+    public static final String BACK_TO_CURRENT_GPS_BUTTON = "%simvLocation";
+    public static final String MOVE_MAP_BUTTON = "%saction_map";
+    public static final String BACK_BUTTON = "//android.widget.ImageButton[@content-desc='Navigate up']";
+    public static final String PIN_ICON = "%spinView";
+
 }

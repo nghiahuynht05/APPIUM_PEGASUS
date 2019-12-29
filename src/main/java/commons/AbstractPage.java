@@ -1,19 +1,21 @@
 package commons;
 
 import interfaces.AbstractPageUI;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.LoginPO;
 
-import java.sql.Time;
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +24,7 @@ public class AbstractPage {
     Actions actions;
     WebDriverWait waitExplicit;
     WebElement element;
+    AndroidElement androidElement;
     List<WebElement> elements;
     By by;
     public long longTimeout = 30;
@@ -61,7 +64,7 @@ public class AbstractPage {
         element.sendKeys(textValue);
     }
 
-    public void sendKeyToElementByXpath(String xpathLocator, String textValue, String attributeValue){
+    public void sendKeyToElementByXpath(String xpathLocator, String textValue, String attributeValue) {
         xpathLocator = String.format(xpathLocator, attributeValue);
         element = driver.findElement(By.xpath(xpathLocator));
         element.clear();
@@ -74,12 +77,12 @@ public class AbstractPage {
         waitElementToBeClickableByLocator(driver, element).click();
     }
 
-    public void clickToElementByXpath(String xpathLocator){
+    public void clickToElementByXpath(String xpathLocator) {
         element = driver.findElement(By.xpath(xpathLocator));
         waitElementToBeClickableByLocator(driver, element).click();
     }
 
-    public void clickToElementByXpath(String xpathLocator, String attributeValue){
+    public void clickToElementByXpath(String xpathLocator, String attributeValue) {
         xpathLocator = String.format(xpathLocator, attributeValue);
         element = driver.findElement(By.xpath(xpathLocator));
         waitElementToBeClickableByLocator(driver, element).click();
@@ -93,16 +96,12 @@ public class AbstractPage {
         actions.perform();
     }
 
-    public String getTextElementById(String locator){
+    public String getTextElementById(String locator) {
         locator = String.format(locator, appPackageId);
         element = driver.findElement(By.id(locator));
         String actualText = element.getText();
         return actualText;
     }
-
-
-
-
 
 
     // Internal methods
@@ -112,65 +111,86 @@ public class AbstractPage {
         return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public boolean checkElementPresentById(String locator){
+    public boolean checkElementPresentById(String locator) {
         driver.manage().timeouts().implicitlyWait(shortTimeout, TimeUnit.SECONDS);
         locator = String.format(locator, appPackageId);
         elements = driver.findElements(By.id(locator));
         driver.manage().timeouts().implicitlyWait(longTimeout, TimeUnit.SECONDS);
-        if (elements.size() > 0){
+        if (elements.size() > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public boolean checkElementPresentByXpath(String xpathLocator, String attributeValue){
+    public boolean checkElementPresentByXpath(String xpathLocator, String attributeValue) {
         driver.manage().timeouts().implicitlyWait(shortTimeout, TimeUnit.SECONDS);
         xpathLocator = String.format(xpathLocator, attributeValue);
         elements = driver.findElements(By.xpath(xpathLocator));
         driver.manage().timeouts().implicitlyWait(longTimeout, TimeUnit.SECONDS);
-        if (elements.size() > 0){
+        if (elements.size() > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public boolean checkElementDisplayedById(AndroidDriver driver, String locator, int time){
+    public boolean checkElementDisplayedById(AndroidDriver driver, String locator, int time) {
         try {
             By elementId = By.id(locator);
             WebDriverWait wait = new WebDriverWait(driver, time);
             wait.until(ExpectedConditions.visibilityOfElementLocated(elementId));
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
-    public boolean isElementDisplayedById(String locator){
+    public boolean isElementDisplayedById(String locator) {
         locator = String.format(locator, appPackageId);
         element = driver.findElementById(locator);
         return element.isDisplayed();
     }
 
-    public boolean isMessageContainsById(String locator, String expectedText){
+    public boolean isElementTextContainsById(String locator, String expectedText) {
         locator = String.format(locator, appPackageId);
         element = driver.findElement(By.id(locator));
         String actualMsg = element.getText();
         return actualMsg.contains(expectedText);
     }
 
-    public void checkBannerAndClose(){
+    public void checkBannerAndClose() {
         boolean bannerDisplay = checkElementPresentById(abstractUI.BANNER);
         System.out.println(bannerDisplay);
-        if (bannerDisplay==true){
+        if (bannerDisplay == true) {
             String locator = String.format(abstractUI.BANNER_CLOSE_BUTTON, appPackageId);
-            element = driver.findElementById(locator);
+            element = driver.findElement(By.id(locator));
+            System.out.println(element);
             element.click();
         }
     }
 
+    public void actionMove() {
+        TouchAction action = new TouchAction(driver);
+        action.press(PointOption.point(498, 631));
+        action.waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)));
+        action.moveTo(PointOption.point(42, 84));
+        action.release();
+        action.perform();
+        sleepInSecond(1);
+    }
 
+    public void hideKeyBoard(){
+        driver.hideKeyboard();
+    }
+
+    public void doubleTapToElement(String locator){
+        locator = String.format(locator, appPackageId);
+        element = driver.findElement(By.id(locator));
+        TouchActions action = new TouchActions(driver);
+        action.doubleTap(element);
+        action.perform();
+    }
 
 }
 

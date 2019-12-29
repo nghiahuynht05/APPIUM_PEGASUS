@@ -9,6 +9,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.junit.Cucumber;
 import cucumberOptions.Hooks;
+import interfaces.HomePageUI;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.runner.RunWith;
@@ -23,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.assertTrue;
 
 @RunWith(Cucumber.class)
-public class HomePageSteps extends AbstractTest {
+public class HomePageSteps {
     AndroidDriver driver;
     AbstractPage abstractPage;
     LoginPO loginPage;
@@ -62,8 +63,17 @@ public class HomePageSteps extends AbstractTest {
         }
     }
 
+    @When("^I verify the Pax login successfully$")
+    public void iVerifyThePaxLoginSuccessfully() {
+        assertTrue(loginPage.isThereHomeButtonPresent());
+    }
+
     @Given("^I login to Pax app with phone number \"([^\"]*)\"$")
     public void iLoginToPaxAppWithPhoneNumber(String phoneNumber)  {
+        if(loginPage.isThereHomeButtonPresent()==true){
+            abstractPage.sleepInSecond(1);
+            homePage.logout();
+        }
         loginPage.clickToPhoneNumberTextbox();
         loginPage.inputToPhoneNumberTextbox(phoneNumber);
         loginPage.clickToAgreeToUAndPolicy();
@@ -74,7 +84,9 @@ public class HomePageSteps extends AbstractTest {
 
     @When("^I am in the Home page$")
     public void iAmInTheHomePage() {
-        assertTrue(loginPage.isThereHomeButtonPresent());
+        if(loginPage.isThereHomeButtonPresent()){
+            assertTrue(loginPage.isThereHomeButtonPresent());
+        }
     }
 
     @Then("^I should see the car image$")
@@ -92,4 +104,30 @@ public class HomePageSteps extends AbstractTest {
     public void iShouldSeeTheMaxOfSeat() {
         assertTrue(homePage.isCarMaxOfSeatDisplayed());
     }
+
+    @Then("^The PU should be the current location$")
+    public void thePUShouldBeTheCurrentLocation() {
+        assertTrue(homePage.isPUEqualsCurrentLocation());
+    }
+
+    @When("^I move map to change PU location$")
+    public void iMoveMapToChangePULocation() {
+        homePage.moveMap();
+    }
+
+    @And("^I verify the PU was changed$")
+    public void iVerifyThePUWasChanged() {
+        assertTrue(homePage.isThePUWasChanged());
+    }
+
+    @And("^I press button to back to the current GPS$")
+    public void i_press_button_to_back_to_the_current_gps() {
+        homePage.clickToCurrentGPSButton();
+    }
+
+    @When("^I press view all button$")
+    public void i_press_view_all_button() {
+        homePage.clickToViewAllButton();
+    }
+
 }

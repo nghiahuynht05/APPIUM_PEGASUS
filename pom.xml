@@ -66,12 +66,6 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>info.cukes</groupId>-->
-<!--            <artifactId>cucumber-picocontainer</artifactId>-->
-<!--            <version>${cucumber.version}</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-testng</artifactId>
@@ -115,5 +109,32 @@
             <version>${selenium.version}</version>
         </dependency>
     </dependencies>
+
+<!--    &lt;!&ndash;Generate report&ndash;&gt;-->
+<!--    <plugin>-->
+<!--        <groupId>net.masterthought</groupId>-->
+<!--        <artifactId>maven-cucumber-reporting</artifactId>-->
+<!--        <version>$[report.version]</version>-->
+<!--        <executions>-->
+<!--            <execution>-->
+<!--                <id>execution</id>-->
+<!--                <phase>verify</phase>-->
+<!--                <goals>-->
+<!--                    <goal>generate</goal>-->
+<!--                </goals>-->
+<!--                <configuration>-->
+<!--                    <projectName>PAX PEGASUS</projectName>-->
+<!--                    <outputDirectory>${project.build.directory}/site/cucumber-reporting</outputDirectory>-->
+<!--                    <inputDirectory>${project.build.directory}/site</inputDirectory>-->
+<!--                    <jsonFiles>-->
+<!--                        <param>**/*.json</param>-->
+<!--                    </jsonFiles>-->
+<!--                    &lt;!&ndash;<enableFlashCharts>true</enableFlashCharts>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<skippedFails>true</skippedFails&ndash;&gt;-->
+<!--                    <checkBuildResult>false</checkBuildResult>-->
+<!--                </configuration>-->
+<!--            </execution>-->
+<!--        </executions>-->
+<!--    </plugin>-->
 
 </project>

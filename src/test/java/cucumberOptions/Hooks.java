@@ -25,6 +25,16 @@ public class Hooks {
             packageApp = "com.qupworld.pegasuspax";
         }
         DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setCapability("deviceName", "21d5ac3d19037ece");
+        cap.setCapability("platformName", "Android");
+        cap.setCapability("platformVersion", "9");
+        cap.setCapability("appPackage", packageApp);
+        cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
+        cap.setCapability("automationName", "UiAutomator2");
+        cap.setCapability("autoGrantPermissions", "true");
+        cap.setCapability("skipDeviceInitialization", "true");
+        cap.setCapability("skipServerInstallation", "true");
+        cap.setCapability("noReset", "true");
         try {
             driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
         } catch (

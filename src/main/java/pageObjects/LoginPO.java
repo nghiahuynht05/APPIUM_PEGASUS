@@ -18,8 +18,9 @@ public class LoginPO extends AbstractPage {
     }
 
     public void clickToPhoneNumberTextbox() {
-        sleepInSecond(1);
-        clickToElementById(loginPageUI.PHONE_NUMBER_TEXTBOX_1ST_SCREEN);
+        if (checkElementPresentById(loginPageUI.PHONE_NUMBER_TEXTBOX_1ST_SCREEN)) {
+            clickToElementById(loginPageUI.PHONE_NUMBER_TEXTBOX_1ST_SCREEN);
+        }
     }
 
     public void longPressToDebugArea() {
@@ -95,7 +96,7 @@ public class LoginPO extends AbstractPage {
     }
 
     public boolean isWelcomeMsgContains(String expectedText){
-        return isMessageContainsById(loginPageUI.WELCOME_MESSAGE, expectedText);
+        return isElementTextContainsById(loginPageUI.WELCOME_MESSAGE, expectedText);
     }
 
     public void selectPhoneCode(String countryName){
@@ -135,4 +136,7 @@ public class LoginPO extends AbstractPage {
         clickToElementById(loginPageUI.SKIP_BUTTON);
     }
 
+    public boolean isCurrentlyLoggedIn(){
+        return checkElementPresentById(loginPageUI.HOME_BUTTON);
+    }
 }

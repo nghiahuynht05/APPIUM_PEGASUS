@@ -9,6 +9,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.junit.Cucumber;
 //import cucumberOptions.Hooks;
+import cucumberOptions.Hooks;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.runner.RunWith;
@@ -35,10 +36,11 @@ public class RegisterAndLoginSteps {
 
     String packageApp, passCode, defaultCode;
 
-    public RegisterAndLoginSteps(AndroidDriver driver) {
-        this.driver = driver;
+    public RegisterAndLoginSteps() {
+        driver = Hooks.openPaxApp("mycar");
         passCode = "7620";
         defaultCode = "2304";
+
         abstractPage = new AbstractPage(driver);
         loginPage = new LoginPO(driver);
         homePage = new HomePO(driver);
@@ -46,36 +48,19 @@ public class RegisterAndLoginSteps {
         abstractPage.sendAppPackage();
     }
 
-    @Given("^I open the \"([^\"]*)\" Pax app for the first time$")
-    public void iOpenThePaxAppForTheFirstTime(String appName) {
-        if(appName.equalsIgnoreCase("mycar")){
-            packageApp = "com.mycar.passenger";
-        }else if(appName.equalsIgnoreCase("pegasus")){
-            packageApp = "com.qupworld.pegasuspax";
-        }
-
-        DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("deviceName", "HT69H0201382");
-        cap.setCapability("platformName", "Android");
-        cap.setCapability("platformVersion", "10");
-        cap.setCapability("appPackage", packageApp);
-        cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
-        cap.setCapability("automationName", "UiAutomator2");
-        cap.setCapability("autoGrantPermissions", "true");
-        cap.setCapability("skipDeviceInitialization", "false");
-        cap.setCapability("skipServerInstallation", "false");
-        cap.setCapability("noReset", "false");
-        try {
-            driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), cap);
-        } catch (
-                MalformedURLException e) {
-            e.printStackTrace();
+    @Given("^I logout if currently logged in$")
+    public void iLogoutIfCurrentlyLoggedIn() {
+        abstractPage.sleepInSecond(1);
+        if (loginPage.isCurrentlyLoggedIn()){
+            homePage.logout();
+        }else{
+            loginPage.clickToPhoneNumberTextbox();
         }
 
     }
 
-    @When("^I select the phone code by \"([^\"]*)\" country if different$")
-    public void iSelectThePhoneCodeByCountryIfDifferent(String countryName) {
+    @And("^I select the phone code by \"([^\"]*)\" country$")
+    public void iSelectThePhoneCodeByCountry(String countryName) {
         loginPage.selectPhoneCode(countryName);
     }
 
@@ -86,9 +71,9 @@ public class RegisterAndLoginSteps {
         assertTrue(loginPage.isThereHomeButtonPresent());
     }
 
-    @And("^I select \"([^\"]*)\" server and input \"([^\"]*)\" fleet code$")
+    @When("^I select \"([^\"]*)\" server and input \"([^\"]*)\" fleet code$")
     public void iSelectServerAndInputFleetCode(String server, String fleetCode) {
-        loginPage.clickToPhoneNumberTextbox();
+//        loginPage.clickToPhoneNumberTextbox();
         loginPage.longPressToDebugArea();
         loginPage.inputToPassCodeTextbox(passCode);
         loginPage.clickToYesNoButton("YES");
@@ -98,12 +83,14 @@ public class RegisterAndLoginSteps {
 
     @Given("^I click to phone number text box$")
     public void iClickToPhoneNumberTextBox() {
+
         loginPage.clickToPhoneNumberTextbox();
     }
 
-    @And("^I input phone number \"([^\"]*)\"$")
-    public void iInputPhoneNumber(String phoneNumber) {
-        loginPage.inputToPhoneNumberTextbox(phoneNumber);
+    @And("^I input the phone number$")
+    public void i_input_the_phone_number(DataTable customerTable) {
+        List<Map<String, String>> phoneNumber = customerTable.asMaps(String.class, String.class);
+        loginPage.inputToPhoneNumberTextbox(phoneNumber.get(0).get("phoneNumber"));
     }
 
 
@@ -147,8 +134,5 @@ public class RegisterAndLoginSteps {
         assertTrue(loginPage.isThereHomeButtonPresent());
     }
 
-    @And("^I logout of the account$")
-    public void iLogoutOfTheAccount() {
-        homePage.logout();
-    }
+
 }
