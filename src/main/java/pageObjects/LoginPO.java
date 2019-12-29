@@ -61,7 +61,7 @@ public class LoginPO extends AbstractPage {
             sendKeyToElementById(loginPageUI.FLEET_ID_TEXTBOX, fleetCode);
             clickToElementById(loginPageUI.APPLY_BUTTON);
         } else if (server.equalsIgnoreCase("sea")) {
-            clickToElementByXpath(loginPageUI.DYNAMIC_SERVERS_TAB, "Sea");
+            clickToElementByXpath(loginPageUI.DYNAMIC_SERVERS_TAB, "Sing");
             sendKeyToElementById(loginPageUI.FLEET_ID_TEXTBOX, fleetCode);
             clickToElementById(loginPageUI.APPLY_BUTTON);
         } else {
@@ -91,52 +91,55 @@ public class LoginPO extends AbstractPage {
         return checkElementPresentById(loginPageUI.HOME_BUTTON);
     }
 
-    public boolean isLoginPagePresent(){
+    public boolean isLoginPagePresent() {
         return checkElementPresentById(loginPageUI.TERM_OF_USE_PRIVACY_POLICY_CHECKBOX);
     }
 
-    public boolean isWelcomeMsgContains(String expectedText){
+    public boolean isWelcomeMsgContains(String expectedText) {
         return isElementTextContainsById(loginPageUI.WELCOME_MESSAGE, expectedText);
     }
 
-    public void selectPhoneCode(String countryName){
-        if(countryName.equalsIgnoreCase("Vietnam")){
+    public void selectPhoneCode(String countryName) {
+        if (countryName.equalsIgnoreCase("Vietnam")) {
             phoneCode = "+84";
-        }else if(countryName.equalsIgnoreCase("Malaysia")){
+        } else if (countryName.equalsIgnoreCase("Malaysia")) {
             phoneCode = "+60";
-        }else if(countryName.equalsIgnoreCase("United State")){
+        } else if (countryName.equalsIgnoreCase("United State")) {
             phoneCode = "+1";
         }
 
         String phoneCodeValue = getTextElementById(loginPageUI.PHONE_CODE_LABEL);
         //Only change country phone code if the current phone code different with the phone code expected
-        if(!phoneCodeValue.equals(phoneCode)){
+        if (!phoneCodeValue.equals(phoneCode)) {
             clickToElementById(loginPageUI.SELECT_PHONE_CODE_BUTTON);
             sendKeyToElementById(loginPageUI.SEARCH_COUNTRY_PHONE_TEXTBOX, countryName);
             clickToElementByXpath(loginPageUI.COUNTRY_PHONE_CODE, countryName);
         }
     }
 
-    public void inputToRegisterTextboxes(String nameField, String textValue){
-        checkElementPresentByXpath(loginPageUI.REGISTER_TEXTBOXES, nameField);
-        sendKeyToElementByXpath(loginPageUI.REGISTER_TEXTBOXES, textValue, nameField);
+    public void inputToRegisterTextboxes(String nameField, String textValue) {
+        if (checkElementPresentByXpath(loginPageUI.REGISTER_TEXTBOXES, nameField)) {
+            checkElementPresentByXpath(loginPageUI.REGISTER_TEXTBOXES, nameField);
+            sendKeyToElementByXpath(loginPageUI.REGISTER_TEXTBOXES, textValue, nameField);
+        }
     }
 
-    public void selectGender(String genderValue){
-        checkElementPresentByXpath(loginPageUI.REGISTER_TEXTBOXES, "Gender");
-        clickToElementByXpath(loginPageUI.REGISTER_TEXTBOXES, "Gender");
-        clickToElementByXpath(loginPageUI.GENDER_BUTTONS, genderValue);
+    public void selectGender(String genderValue) {
+        if (checkElementPresentByXpath(loginPageUI.REGISTER_TEXTBOXES, "Gender")) {
+            clickToElementByXpath(loginPageUI.REGISTER_TEXTBOXES, "Gender");
+            clickToElementByXpath(loginPageUI.GENDER_BUTTONS, genderValue);
+        }
     }
 
-    public void clickToSaveButton(){
+    public void clickToSaveButton() {
         clickToElementById(loginPageUI.SAVE_BUTTON);
     }
 
-    public void clickToSkipButton(){
+    public void clickToSkipButton() {
         clickToElementById(loginPageUI.SKIP_BUTTON);
     }
 
-    public boolean isCurrentlyLoggedIn(){
+    public boolean isCurrentlyLoggedIn() {
         return checkElementPresentById(loginPageUI.HOME_BUTTON);
     }
 }

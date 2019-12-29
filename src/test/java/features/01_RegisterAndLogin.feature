@@ -1,4 +1,4 @@
-
+@TC01_registerAndLogin
 Feature: Register new account and login
   As a new customer
   I want to register and login to the application normally
@@ -6,18 +6,18 @@ Feature: Register new account and login
   Scenario: 01 - Register to Passenger application
     Given I logout if currently logged in
     And I click to phone number text box
-    When I select "beta" server and input "tamqa" fleet code
+    When I select "sea" server and input "myqup" fleet code
     And I select the phone code by "Vietnam" country
     And I input the phone number
       | phoneNumber |
-      | 356877212   |
+      | 356877210   |
     And I agree with Term of use and Privacy policy
     And I click to continue button
     And I input sms verify code if have
     And I verify register message contains "MyCar"
     And I input user information to register
-      | firstName | lastName | gender |
-      | Danny     | Cee      | Male   |
+      | FirstName | LastName | Email             | ID/IC     | Gender |
+      | Danny     | Cee      | tamqada@gmail.com | 123123123 | Male   |
     And I click to save button
     Then I verify the passenger register successfully
 
@@ -33,7 +33,7 @@ Feature: Register new account and login
     Then I verify the passenger login successfully
     Examples: Login with the number just registered and the phone number which used to login app
       | PhoneNumber |
-      | 356877212   |
+      | 356877210   |
       | 0356822833  |
     #1: Phone number that was registered in 1st test case
     #2: Phone number which used to login app

@@ -39,7 +39,7 @@ public class RegisterAndLoginSteps {
     public RegisterAndLoginSteps() {
         driver = Hooks.openPaxApp("mycar");
         passCode = "7620";
-        defaultCode = "2304";
+        defaultCode = "1211";
 
         abstractPage = new AbstractPage(driver);
         loginPage = new LoginPO(driver);
@@ -119,9 +119,11 @@ public class RegisterAndLoginSteps {
     @And("^I input user information to register$")
     public void iInputUserInformationToRegister(DataTable customerTable) {
         List<Map<String, String>> customer = customerTable.asMaps(String.class, String.class);
-        loginPage.inputToRegisterTextboxes("First name", customer.get(0).get("firstName"));
-        loginPage.inputToRegisterTextboxes("Last name", customer.get(0).get("lastName"));
-        loginPage.selectGender(customer.get(0).get("gender"));
+        loginPage.inputToRegisterTextboxes("First name", customer.get(0).get("FirstName"));
+        loginPage.inputToRegisterTextboxes("Last name", customer.get(0).get("LastName"));
+        loginPage.inputToRegisterTextboxes("Email", customer.get(0).get("Email"));
+        loginPage.inputToRegisterTextboxes("ID# / National IC#", customer.get(0).get("ID/IC"));
+        loginPage.selectGender(customer.get(0).get("Gender"));
     }
 
     @And("^I click to save button$")

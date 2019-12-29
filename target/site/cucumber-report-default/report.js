@@ -1,267 +1,380 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("02_HomePageTestCases.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("01_RegisterAndLogin.feature");
 formatter.feature({
-  "comments": [
-    {
-      "line": 1,
-      "value": "# new feature"
-    },
-    {
-      "line": 2,
-      "value": "# Tags: optional"
-    }
-  ],
-  "line": 4,
-  "name": "Check car type on map",
-  "description": "",
-  "id": "check-car-type-on-map",
+  "line": 2,
+  "name": "Register new account and login",
+  "description": "As a new customer\r\nI want to register and login to the application normally",
+  "id": "register-new-account-and-login",
   "keyword": "Feature",
   "tags": [
     {
-      "line": 3,
-      "name": "@TC02_carType"
+      "line": 1,
+      "name": "@TC01_registerAndLogin"
     }
   ]
 });
 formatter.scenario({
   "line": 6,
-  "name": "01 - Check default car type on Home screen",
+  "name": "01 - Register to Passenger application",
   "description": "",
-  "id": "check-car-type-on-map;01---check-default-car-type-on-home-screen",
+  "id": "register-new-account-and-login;01---register-to-passenger-application",
   "type": "scenario",
   "keyword": "Scenario"
 });
 formatter.step({
   "line": 7,
-  "name": "I login to Pax app with phone number \"356822833\"",
+  "name": "I logout if currently logged in",
   "keyword": "Given "
 });
 formatter.step({
   "line": 8,
-  "name": "I verify the Pax login successfully",
-  "keyword": "When "
+  "name": "I click to phone number text box",
+  "keyword": "And "
 });
 formatter.step({
   "line": 9,
-  "name": "I should see the car image",
-  "keyword": "Then "
+  "name": "I select \"sea\" server and input \"myqup\" fleet code",
+  "keyword": "When "
 });
 formatter.step({
   "line": 10,
-  "name": "I should see the car name",
+  "name": "I select the phone code by \"Vietnam\" country",
   "keyword": "And "
 });
 formatter.step({
   "line": 11,
-  "name": "I should see the max of seat",
-  "keyword": "And "
-});
-formatter.match({
-  "arguments": [
+  "name": "I input the phone number",
+  "rows": [
     {
-      "val": "356822833",
-      "offset": 38
+      "cells": [
+        "phoneNumber"
+      ],
+      "line": 12
+    },
+    {
+      "cells": [
+        "356877210"
+      ],
+      "line": 13
     }
   ],
-  "location": "HomePageSteps.iLoginToPaxAppWithPhoneNumber(String)"
-});
-formatter.result({
-  "duration": 33617516650,
-  "status": "passed"
-});
-formatter.match({
-  "location": "HomePageSteps.iVerifyThePaxLoginSuccessfully()"
-});
-formatter.result({
-  "duration": 125445957,
-  "status": "passed"
-});
-formatter.match({
-  "location": "HomePageSteps.iShouldSeeTheCarImage()"
-});
-formatter.result({
-  "duration": 114947446,
-  "status": "passed"
-});
-formatter.match({
-  "location": "HomePageSteps.iShouldSeeTheCarName()"
-});
-formatter.result({
-  "duration": 108095415,
-  "status": "passed"
-});
-formatter.match({
-  "location": "HomePageSteps.iShouldSeeTheMaxOfSeat()"
-});
-formatter.result({
-  "duration": 124213905,
-  "status": "passed"
-});
-formatter.scenario({
-  "line": 13,
-  "name": "02 - Check PU is the current location",
-  "description": "",
-  "id": "check-car-type-on-map;02---check-pu-is-the-current-location",
-  "type": "scenario",
-  "keyword": "Scenario"
+  "keyword": "And "
 });
 formatter.step({
   "line": 14,
-  "name": "I am in the Home page",
-  "keyword": "Given "
+  "name": "I agree with Term of use and Privacy policy",
+  "keyword": "And "
 });
 formatter.step({
   "line": 15,
-  "name": "The PU should be the current location",
-  "keyword": "Then "
+  "name": "I click to continue button",
+  "keyword": "And "
 });
-formatter.match({
-  "location": "HomePageSteps.iAmInTheHomePage()"
+formatter.step({
+  "line": 16,
+  "name": "I input sms verify code if have",
+  "keyword": "And "
 });
-formatter.result({
-  "duration": 13059123301,
-  "status": "passed"
-});
-formatter.match({
-  "location": "HomePageSteps.thePUShouldBeTheCurrentLocation()"
-});
-formatter.result({
-  "duration": 128714733,
-  "status": "passed"
-});
-formatter.scenario({
+formatter.step({
   "line": 17,
-  "name": "03 - Move map and Update PU location to current location",
-  "description": "",
-  "id": "check-car-type-on-map;03---move-map-and-update-pu-location-to-current-location",
-  "type": "scenario",
-  "keyword": "Scenario"
+  "name": "I verify register message contains \"MyCar\"",
+  "keyword": "And "
 });
 formatter.step({
   "line": 18,
-  "name": "I am in the Home page",
-  "keyword": "Given "
-});
-formatter.step({
-  "line": 19,
-  "name": "I move map to change PU location",
-  "keyword": "When "
-});
-formatter.step({
-  "line": 20,
-  "name": "I verify the PU was changed",
+  "name": "I input user information to register",
+  "rows": [
+    {
+      "cells": [
+        "FirstName",
+        "LastName",
+        "Email",
+        "ID/IC",
+        "Gender"
+      ],
+      "line": 19
+    },
+    {
+      "cells": [
+        "Danny",
+        "Cee",
+        "tamqada@gmail.com",
+        "123123123",
+        "Male"
+      ],
+      "line": 20
+    }
+  ],
   "keyword": "And "
 });
 formatter.step({
   "line": 21,
-  "name": "I press button to back to the current GPS",
+  "name": "I click to save button",
   "keyword": "And "
 });
 formatter.step({
   "line": 22,
-  "name": "The PU should be the current location",
+  "name": "I verify the passenger register successfully",
   "keyword": "Then "
 });
 formatter.match({
-  "location": "HomePageSteps.iAmInTheHomePage()"
+  "location": "RegisterAndLoginSteps.iLogoutIfCurrentlyLoggedIn()"
 });
 formatter.result({
-  "duration": 12865625875,
+  "duration": 18261864948,
   "status": "passed"
 });
 formatter.match({
-  "location": "HomePageSteps.iMoveMapToChangePULocation()"
+  "location": "RegisterAndLoginSteps.iClickToPhoneNumberTextBox()"
 });
 formatter.result({
-  "duration": 2565918677,
+  "duration": 1502572700,
   "status": "passed"
 });
 formatter.match({
-  "location": "HomePageSteps.iVerifyThePUWasChanged()"
+  "arguments": [
+    {
+      "val": "sea",
+      "offset": 10
+    },
+    {
+      "val": "myqup",
+      "offset": 33
+    }
+  ],
+  "location": "RegisterAndLoginSteps.iSelectServerAndInputFleetCode(String,String)"
 });
 formatter.result({
-  "duration": 296251623,
+  "duration": 10548061453,
   "status": "passed"
 });
 formatter.match({
-  "location": "HomePageSteps.i_press_button_to_back_to_the_current_gps()"
+  "arguments": [
+    {
+      "val": "Vietnam",
+      "offset": 28
+    }
+  ],
+  "location": "RegisterAndLoginSteps.iSelectThePhoneCodeByCountry(String)"
 });
 formatter.result({
-  "duration": 323800566,
+  "duration": 178790090,
   "status": "passed"
 });
 formatter.match({
-  "location": "HomePageSteps.thePUShouldBeTheCurrentLocation()"
+  "location": "RegisterAndLoginSteps.i_input_the_phone_number(DataTable)"
 });
 formatter.result({
-  "duration": 1306038245,
+  "duration": 857237166,
   "status": "passed"
 });
-formatter.scenario({
+formatter.match({
+  "location": "RegisterAndLoginSteps.iAgreeWithTermOfUseAndPrivacyPolicy()"
+});
+formatter.result({
+  "duration": 818871427,
+  "status": "passed"
+});
+formatter.match({
+  "location": "RegisterAndLoginSteps.iClickToContinueButton()"
+});
+formatter.result({
+  "duration": 1789362037,
+  "status": "passed"
+});
+formatter.match({
+  "location": "RegisterAndLoginSteps.iInputSmsVerifyCodeIfHave()"
+});
+formatter.result({
+  "duration": 3580121579,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "MyCar",
+      "offset": 36
+    }
+  ],
+  "location": "RegisterAndLoginSteps.iVerifyRegisterMessageContains(String)"
+});
+formatter.result({
+  "duration": 488410427,
+  "status": "passed"
+});
+formatter.match({
+  "location": "RegisterAndLoginSteps.iInputUserInformationToRegister(DataTable)"
+});
+formatter.result({
+  "duration": 11726637647,
+  "status": "passed"
+});
+formatter.match({
+  "location": "RegisterAndLoginSteps.iClickToSaveButton()"
+});
+formatter.result({
+  "duration": 871398208,
+  "status": "passed"
+});
+formatter.match({
+  "location": "RegisterAndLoginSteps.iVerifyThePassengerRegisterSuccessfully()"
+});
+formatter.result({
+  "duration": 20361277577,
+  "status": "passed"
+});
+formatter.scenarioOutline({
   "line": 24,
-  "name": "04 - Check available car types when press \"view all\"",
+  "name": "02 - Login to Pax app by the phone number just registered",
   "description": "",
-  "id": "check-car-type-on-map;04---check-available-car-types-when-press-\"view-all\"",
-  "type": "scenario",
-  "keyword": "Scenario"
+  "id": "register-new-account-and-login;02---login-to-pax-app-by-the-phone-number-just-registered",
+  "type": "scenario_outline",
+  "keyword": "Scenario Outline"
 });
 formatter.step({
   "line": 25,
-  "name": "I am in the Home page",
+  "name": "I logout if currently logged in",
   "keyword": "Given "
 });
 formatter.step({
   "line": 26,
-  "name": "I press view all button",
-  "keyword": "When "
+  "name": "I click to phone number text box",
+  "keyword": "And "
 });
 formatter.step({
   "line": 27,
-  "name": "I should see the car name",
+  "name": "I input the phone number",
+  "rows": [
+    {
+      "cells": [
+        "phoneNumber"
+      ],
+      "line": 28
+    },
+    {
+      "cells": [
+        "\u003cPhoneNumber\u003e"
+      ],
+      "line": 29
+    }
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 30,
+  "name": "I agree with Term of use and Privacy policy",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 31,
+  "name": "I click to continue button",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 32,
+  "name": "I input sms verify code if have",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 33,
+  "name": "I verify the passenger login successfully",
   "keyword": "Then "
 });
+formatter.examples({
+  "line": 34,
+  "name": "Login with the number just registered and the phone number which used to login app",
+  "description": "",
+  "id": "register-new-account-and-login;02---login-to-pax-app-by-the-phone-number-just-registered;login-with-the-number-just-registered-and-the-phone-number-which-used-to-login-app",
+  "rows": [
+    {
+      "cells": [
+        "PhoneNumber"
+      ],
+      "line": 35,
+      "id": "register-new-account-and-login;02---login-to-pax-app-by-the-phone-number-just-registered;login-with-the-number-just-registered-and-the-phone-number-which-used-to-login-app;1"
+    },
+    {
+      "cells": [
+        "356877210"
+      ],
+      "line": 36,
+      "id": "register-new-account-and-login;02---login-to-pax-app-by-the-phone-number-just-registered;login-with-the-number-just-registered-and-the-phone-number-which-used-to-login-app;2"
+    },
+    {
+      "cells": [
+        "0356822833"
+      ],
+      "line": 37,
+      "id": "register-new-account-and-login;02---login-to-pax-app-by-the-phone-number-just-registered;login-with-the-number-just-registered-and-the-phone-number-which-used-to-login-app;3"
+    }
+  ],
+  "keyword": "Examples"
+});
+formatter.scenario({
+  "line": 36,
+  "name": "02 - Login to Pax app by the phone number just registered",
+  "description": "",
+  "id": "register-new-account-and-login;02---login-to-pax-app-by-the-phone-number-just-registered;login-with-the-number-just-registered-and-the-phone-number-which-used-to-login-app;2",
+  "type": "scenario",
+  "keyword": "Scenario Outline",
+  "tags": [
+    {
+      "line": 1,
+      "name": "@TC01_registerAndLogin"
+    }
+  ]
+});
 formatter.step({
-  "line": 28,
-  "name": "I should see the car image",
+  "line": 25,
+  "name": "I logout if currently logged in",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 26,
+  "name": "I click to phone number text box",
   "keyword": "And "
 });
 formatter.step({
-  "line": 29,
-  "name": "I should see the max of seat",
+  "line": 27,
+  "name": "I input the phone number",
+  "matchedColumns": [
+    0
+  ],
+  "rows": [
+    {
+      "cells": [
+        "phoneNumber"
+      ],
+      "line": 28
+    },
+    {
+      "cells": [
+        "356877210"
+      ],
+      "line": 29
+    }
+  ],
+  "keyword": "When "
+});
+formatter.step({
+  "line": 30,
+  "name": "I agree with Term of use and Privacy policy",
   "keyword": "And "
 });
-formatter.match({
-  "location": "HomePageSteps.iAmInTheHomePage()"
+formatter.step({
+  "line": 31,
+  "name": "I click to continue button",
+  "keyword": "And "
 });
-formatter.result({
-  "duration": 13144918207,
-  "status": "passed"
+formatter.step({
+  "line": 32,
+  "name": "I input sms verify code if have",
+  "keyword": "And "
 });
-formatter.match({
-  "location": "HomePageSteps.i_press_view_all_button()"
-});
-formatter.result({
-  "duration": 367132583,
-  "status": "passed"
-});
-formatter.match({
-  "location": "HomePageSteps.iShouldSeeTheCarName()"
-});
-formatter.result({
-  "duration": 1624260707,
-  "status": "passed"
+formatter.step({
+  "line": 33,
+  "name": "I verify the passenger login successfully",
+  "keyword": "Then "
 });
 formatter.match({
-  "location": "HomePageSteps.iShouldSeeTheCarImage()"
-});
-formatter.result({
-  "duration": 132665017,
-  "status": "passed"
-});
-formatter.match({
-  "location": "HomePageSteps.iShouldSeeTheMaxOfSeat()"
-});
-formatter.result({
-  "duration": 154379265,
-  "status": "passed"
-});
+  "location": "RegisterAndLoginSteps.iLogoutIfCurrentlyLoggedIn()"
 });
