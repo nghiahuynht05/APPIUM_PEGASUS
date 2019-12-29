@@ -1,0 +1,278 @@
+[
+  {
+    "comments": [
+      {
+        "line": 1,
+        "value": "# new feature"
+      },
+      {
+        "line": 2,
+        "value": "# Tags: optional"
+      }
+    ],
+    "line": 4,
+    "elements": [
+      {
+        "line": 6,
+        "name": "01 - Check default car type on Home screen",
+        "description": "",
+        "id": "check-car-type-on-map;01---check-default-car-type-on-home-screen",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 33617516650,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I login to Pax app with phone number \"356822833\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "356822833",
+                  "offset": 38
+                }
+              ],
+              "location": "HomePageSteps.iLoginToPaxAppWithPhoneNumber(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 125445957,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "I verify the Pax login successfully",
+            "match": {
+              "location": "HomePageSteps.iVerifyThePaxLoginSuccessfully()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 114947446,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "I should see the car image",
+            "match": {
+              "location": "HomePageSteps.iShouldSeeTheCarImage()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 108095415,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "I should see the car name",
+            "match": {
+              "location": "HomePageSteps.iShouldSeeTheCarName()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 124213905,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I should see the max of seat",
+            "match": {
+              "location": "HomePageSteps.iShouldSeeTheMaxOfSeat()"
+            },
+            "keyword": "And "
+          }
+        ]
+      },
+      {
+        "line": 13,
+        "name": "02 - Check PU is the current location",
+        "description": "",
+        "id": "check-car-type-on-map;02---check-pu-is-the-current-location",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 13059123301,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "I am in the Home page",
+            "match": {
+              "location": "HomePageSteps.iAmInTheHomePage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 128714733,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "The PU should be the current location",
+            "match": {
+              "location": "HomePageSteps.thePUShouldBeTheCurrentLocation()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 17,
+        "name": "03 - Move map and Update PU location to current location",
+        "description": "",
+        "id": "check-car-type-on-map;03---move-map-and-update-pu-location-to-current-location",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 12865625875,
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "I am in the Home page",
+            "match": {
+              "location": "HomePageSteps.iAmInTheHomePage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 2565918677,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "I move map to change PU location",
+            "match": {
+              "location": "HomePageSteps.iMoveMapToChangePULocation()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 296251623,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "I verify the PU was changed",
+            "match": {
+              "location": "HomePageSteps.iVerifyThePUWasChanged()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 323800566,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "I press button to back to the current GPS",
+            "match": {
+              "location": "HomePageSteps.i_press_button_to_back_to_the_current_gps()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1306038245,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "The PU should be the current location",
+            "match": {
+              "location": "HomePageSteps.thePUShouldBeTheCurrentLocation()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "line": 24,
+        "name": "04 - Check available car types when press \"view all\"",
+        "description": "",
+        "id": "check-car-type-on-map;04---check-available-car-types-when-press-\"view-all\"",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 13144918207,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "I am in the Home page",
+            "match": {
+              "location": "HomePageSteps.iAmInTheHomePage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 367132583,
+              "status": "passed"
+            },
+            "line": 26,
+            "name": "I press view all button",
+            "match": {
+              "location": "HomePageSteps.i_press_view_all_button()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1624260707,
+              "status": "passed"
+            },
+            "line": 27,
+            "name": "I should see the car name",
+            "match": {
+              "location": "HomePageSteps.iShouldSeeTheCarName()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 132665017,
+              "status": "passed"
+            },
+            "line": 28,
+            "name": "I should see the car image",
+            "match": {
+              "location": "HomePageSteps.iShouldSeeTheCarImage()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 154379265,
+              "status": "passed"
+            },
+            "line": 29,
+            "name": "I should see the max of seat",
+            "match": {
+              "location": "HomePageSteps.iShouldSeeTheMaxOfSeat()"
+            },
+            "keyword": "And "
+          }
+        ]
+      }
+    ],
+    "name": "Check car type on map",
+    "description": "",
+    "id": "check-car-type-on-map",
+    "keyword": "Feature",
+    "uri": "02_HomePageTestCases.feature",
+    "tags": [
+      {
+        "line": 3,
+        "name": "@TC02_carType"
+      }
+    ]
+  }
+]
