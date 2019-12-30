@@ -22,11 +22,25 @@ Feature: Check car type on map
     Then The PU should be the current location
 
   Scenario: 04 - Check available car types when press "view all"
+    Given I am in the Home page
+    When I press view all button
+    Then I should see the car name
+    And I should see the car image
+    And I should see the max of seat
+
+  Scenario: 05 - Check car information
   Given I am in the Home page
-  When I press view all button
+  When I tap on car image
+  And I swipe to change car type
   Then I should see the car name
   And I should see the car image
   And I should see the max of seat
+  And I should see the max of luggage
+  And I should see the minimum fare
+  And I should see the base fare
+  And I should see the fee per kilometre
+  And I should see the fee per minute
+
 
 
 

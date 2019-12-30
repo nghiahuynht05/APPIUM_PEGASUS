@@ -130,4 +130,35 @@ public class HomePageSteps {
         homePage.clickToViewAllButton();
     }
 
+    @When("^I tap on car image$")
+    public void iTapOnCarImage() {
+
+    }
+
+    @And("^I should see the max of luggage$")
+    public void iShouldSeeTheMaxOfLuggage() {
+
+    }
+
+    @And("^I should see the minimum fare$")
+    public void iShouldSeeTheMinimumFare() {
+
+    }
+
+    @And("^I should see the base fare$")
+    public void iShouldSeeTheBaseFare(){
+
+    }
+
+    @And("^I should see the fee per kilometre$")
+    public void iShouldSeeTheFeePerKilometre(){
+
+    }
+
+    @And("^I should see the fee per minute$")
+    public void iShouldSeeTheFeePerMinute(){
+
+    }
+
+
 }

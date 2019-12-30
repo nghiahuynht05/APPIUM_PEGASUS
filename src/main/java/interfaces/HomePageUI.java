@@ -11,6 +11,13 @@ public class HomePageUI {
     public static final String CAR_IMAGE = "%simvVehicle";
     public static final String CAR_NAME = "%stv_vehicle";
     public static final String MAX_OF_SEAT = "%stv_seat";
+    public static final String MAX_OF_LUGGAGE = "%stv_luggage";
+    public static final String MINIMUM_FARE_LABEL = "%stvMinFare";
+    public static final String BASE_FARE_LABEL = "%stvBaseFare";
+    public static final String FARE_PER_KM_LABEL = "%stvPerKm";
+    public static final String FARE_PER_MINUTE_LABEL = "%stvPerMin";
+
+
     public static final String VIEW_ALL_BUTTON = "%sview_all";
 
     public static final String CURRENT_LOCATION_LABEL = "%stvAddress";
