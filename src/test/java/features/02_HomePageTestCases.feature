@@ -1,6 +1,6 @@
 # new feature
 # Tags: optional
-@TC02_carType
+@HomePageTestCases
 Feature: Check car type on map
 
   Scenario: 01 - Check default car type on Home screen

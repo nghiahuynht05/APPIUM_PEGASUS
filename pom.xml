@@ -12,6 +12,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
@@ -27,6 +28,32 @@
                         <include>**/*/CucumberTestRunner.java</include>
                     </includes>
                 </configuration>
+            </plugin>
+            <!--Generate report-->
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>3.20.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>PAX PEGASUS</projectName>
+                            <outputDirectory>${project.build.directory}/site/cucumber-reporting</outputDirectory>
+                            <inputDirectory>${project.build.directory}/site</inputDirectory>
+                            <jsonFiles>
+                                <param>**/*.json</param>
+                            </jsonFiles>
+                            <!--<enableFlashCharts>true</enableFlashCharts>-->
+                            <!--<skippedFails>true</skippedFails-->
+                            <checkBuildResult>false</checkBuildResult>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -110,31 +137,5 @@
         </dependency>
     </dependencies>
 
-<!--    &lt;!&ndash;Generate report&ndash;&gt;-->
-<!--    <plugin>-->
-<!--        <groupId>net.masterthought</groupId>-->
-<!--        <artifactId>maven-cucumber-reporting</artifactId>-->
-<!--        <version>$[report.version]</version>-->
-<!--        <executions>-->
-<!--            <execution>-->
-<!--                <id>execution</id>-->
-<!--                <phase>verify</phase>-->
-<!--                <goals>-->
-<!--                    <goal>generate</goal>-->
-<!--                </goals>-->
-<!--                <configuration>-->
-<!--                    <projectName>PAX PEGASUS</projectName>-->
-<!--                    <outputDirectory>${project.build.directory}/site/cucumber-reporting</outputDirectory>-->
-<!--                    <inputDirectory>${project.build.directory}/site</inputDirectory>-->
-<!--                    <jsonFiles>-->
-<!--                        <param>**/*.json</param>-->
-<!--                    </jsonFiles>-->
-<!--                    &lt;!&ndash;<enableFlashCharts>true</enableFlashCharts>&ndash;&gt;-->
-<!--                    &lt;!&ndash;<skippedFails>true</skippedFails&ndash;&gt;-->
-<!--                    <checkBuildResult>false</checkBuildResult>-->
-<!--                </configuration>-->
-<!--            </execution>-->
-<!--        </executions>-->
-<!--    </plugin>-->
 
 </project>
