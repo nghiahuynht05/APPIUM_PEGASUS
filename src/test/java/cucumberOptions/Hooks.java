@@ -25,9 +25,9 @@ public class Hooks {
             packageApp = "com.qupworld.pegasuspax";
         }
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("deviceName", "HT69H0201382");
+        cap.setCapability("deviceName", "21d5ac3d19037ece");
         cap.setCapability("platformName", "Android");
-        cap.setCapability("platformVersion", "10");
+        cap.setCapability("platformVersion", "9");
         cap.setCapability("appPackage", packageApp);
         cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
         cap.setCapability("automationName", "UiAutomator2");

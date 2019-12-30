@@ -16,6 +16,7 @@ public class HomePageUI {
     public static final String BASE_FARE_LABEL = "%stvBaseFare";
     public static final String FARE_PER_KM_LABEL = "%stvPerKm";
     public static final String FARE_PER_MINUTE_LABEL = "%stvPerMin";
+    public static final String NOTE_DESCRIPTION = "%stvDescription";
 
 
     public static final String VIEW_ALL_BUTTON = "%sview_all";

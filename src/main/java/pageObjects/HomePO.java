@@ -28,43 +28,75 @@ public class HomePO extends AbstractPage {
         return isElementDisplayedById(HomePageUI.CAR_IMAGE);
     }
 
-    public boolean isCarNameDisplayed(){
+    public boolean isCarNameDisplayed() {
         return isElementDisplayedById(HomePageUI.CAR_NAME);
     }
 
-    public boolean isCarMaxOfSeatDisplayed(){
+    public boolean isCarMaxOfSeatDisplayed() {
         return isElementDisplayedById(HomePageUI.MAX_OF_SEAT);
     }
 
-    public boolean isPUEqualsCurrentLocation(){
+    public boolean isPUEqualsCurrentLocation() {
         String currentGPS = getTextElementById(HomePageUI.CURRENT_LOCATION_LABEL);
-        if(currentGPS.contains("2 Quang Trung")){
+        if (currentGPS.contains("2 Quang Trung")) {
             return true;
-        }else if(currentGPS.contains("2 Quang Cự")){
+        } else if (currentGPS.contains("2 Quang Cự")) {
             return true;
-        }else if (currentGPS.contains("3 Đường Phan Chu Trinh")){
+        } else if (currentGPS.contains("3 Đường Phan Chu Trinh")) {
             return true;
-        }else if(currentGPS.contains("322 Hải Phòng")){
+        } else if (currentGPS.contains("322 Hải Phòng")) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public void moveMap(){
-        actionMove();
+    public void moveMap() {
+        actionMove(498, 631, 187, 455);
     }
 
-    public boolean isThePUWasChanged(){
+    public boolean isThePUWasChanged() {
         return checkElementPresentById(HomePageUI.BACK_TO_CURRENT_GPS_BUTTON);
     }
 
-    public void clickToCurrentGPSButton(){
+    public void clickToCurrentGPSButton() {
         clickToElementById(HomePageUI.BACK_TO_CURRENT_GPS_BUTTON);
     }
 
-    public void clickToViewAllButton(){
+    public void clickToViewAllButton() {
         clickToElementById(HomePageUI.VIEW_ALL_BUTTON);
     }
+
+    public void clickToCarImage() {
+        clickToElementById(HomePageUI.CAR_IMAGE);
+    }
+
+    public void swipeCarType() {
+        actionMove(920, 1594, 45, 1594);
+    }
+
+    public boolean isMaxLuggageDisplayed() {
+        return checkElementPresentById(HomePageUI.MAX_OF_LUGGAGE);
+    }
+
+    public boolean isMinimumFareDisplayed(){
+        return checkElementPresentById(HomePageUI.MINIMUM_FARE_LABEL);
+    }
+
+    public boolean isBaseFareDisplayed(){
+        return checkElementPresentById(HomePageUI.BASE_FARE_LABEL);
+    }
+
+    public boolean isFeePerKMDisplayed(){
+        return checkElementPresentById(HomePageUI.FARE_PER_KM_LABEL);
+    }
+
+    public boolean isFeePerMinuteDisplayed(){
+        return checkElementPresentById(HomePageUI.FARE_PER_MINUTE_LABEL);
+    }
+
+    public boolean isNoteDescriptionDisplayed(){
+        return checkElementPresentById(HomePageUI.NOTE_DESCRIPTION);
+    }
+
 }

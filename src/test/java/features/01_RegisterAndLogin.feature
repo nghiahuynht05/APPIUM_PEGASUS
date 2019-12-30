@@ -10,7 +10,7 @@ Feature: Register new account and login
     And I select the phone code by "Vietnam" country
     And I input the phone number
       | phoneNumber |
-      | 356877210   |
+      | 356000008   |
     And I agree with Term of use and Privacy policy
     And I click to continue button
     And I input sms verify code if have
@@ -33,7 +33,7 @@ Feature: Register new account and login
     Then I verify the passenger login successfully
     Examples: Login with the number just registered and the phone number which used to login app
       | PhoneNumber |
-      | 356877210   |
+      | 356000008   |
       | 0356822833  |
     #1: Phone number that was registered in 1st test case
     #2: Phone number which used to login app

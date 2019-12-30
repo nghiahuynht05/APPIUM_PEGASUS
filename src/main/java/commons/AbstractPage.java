@@ -170,11 +170,11 @@ public class AbstractPage {
         }
     }
 
-    public void actionMove() {
+    public void actionMove(int xmoveFrom, int ymoveFrom, int xmoveTo, int ymoveTo) {
         TouchAction action = new TouchAction(driver);
-        action.press(PointOption.point(498, 631));
+        action.press(PointOption.point(xmoveFrom, ymoveFrom));
         action.waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)));
-        action.moveTo(PointOption.point(42, 84));
+        action.moveTo(PointOption.point(xmoveTo, ymoveTo));
         action.release();
         action.perform();
         sleepInSecond(1);

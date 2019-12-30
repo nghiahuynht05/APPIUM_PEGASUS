@@ -121,44 +121,54 @@ public class HomePageSteps {
     }
 
     @And("^I press button to back to the current GPS$")
-    public void i_press_button_to_back_to_the_current_gps() {
+    public void iPressButtonToBackToTheCurrentGPS() {
         homePage.clickToCurrentGPSButton();
     }
 
     @When("^I press view all button$")
-    public void i_press_view_all_button() {
+    public void iPressViewAllButton() {
         homePage.clickToViewAllButton();
     }
 
     @When("^I tap on car image$")
     public void iTapOnCarImage() {
-
+        homePage.clickToCarImage();
     }
 
     @And("^I should see the max of luggage$")
     public void iShouldSeeTheMaxOfLuggage() {
-
+        assertTrue(homePage.isMaxLuggageDisplayed());
     }
 
     @And("^I should see the minimum fare$")
     public void iShouldSeeTheMinimumFare() {
-
+        assertTrue(homePage.isMinimumFareDisplayed());
     }
 
     @And("^I should see the base fare$")
     public void iShouldSeeTheBaseFare(){
-
+        assertTrue(homePage.isBaseFareDisplayed());
     }
 
     @And("^I should see the fee per kilometre$")
     public void iShouldSeeTheFeePerKilometre(){
-
+        assertTrue(homePage.isFeePerKMDisplayed());
     }
 
     @And("^I should see the fee per minute$")
     public void iShouldSeeTheFeePerMinute(){
-
+        assertTrue(homePage.isFeePerMinuteDisplayed());
     }
 
+    @And("^I swipe to change car type$")
+    public void iSwipeToChangeCarType() {
+        abstractPage.sleepInSecond(1);
+        homePage.swipeCarType();
+    }
+
+    @And("^I should see the note description$")
+    public void iShouldSeeTheNoteDescription() {
+        assertTrue(homePage.isNoteDescriptionDisplayed());
+    }
 
 }
