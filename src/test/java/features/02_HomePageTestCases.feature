@@ -42,6 +42,10 @@ Feature: Check car type on map
     And I should see the fee per minute
     And I should see the note description
 
+  Scenario: 06 - Check car type is assigned on-demand only
+  Given I am in the Home page
+  When I tap on car image
+  And I swipe to change car type
 
 
 

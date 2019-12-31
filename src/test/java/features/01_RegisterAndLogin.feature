@@ -6,7 +6,7 @@ Feature: Register new account and login
   Scenario: 01 - Register to Passenger application
     Given I logout if currently logged in
     And I click to phone number text box
-    When I select "beta" server and input "tamqa" fleet code
+    When I select "beta" server and input "uatpax" fleet code
     And I select the phone code by "Vietnam" country
     And I input the phone number
       | phoneNumber |
