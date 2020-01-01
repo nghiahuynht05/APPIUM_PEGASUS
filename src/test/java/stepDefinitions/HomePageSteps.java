@@ -163,12 +163,13 @@ public class HomePageSteps {
     @And("^I swipe to change car type$")
     public void iSwipeToChangeCarType() {
         abstractPage.sleepInSecond(1);
-        homePage.swipeCarType();
+        assertTrue(homePage.swipeCarType());
     }
 
     @And("^I should see the note description$")
     public void iShouldSeeTheNoteDescription() {
         assertTrue(homePage.isNoteDescriptionDisplayed());
     }
+
 
 }

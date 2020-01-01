@@ -71,8 +71,15 @@ public class HomePO extends AbstractPage {
         clickToElementById(HomePageUI.CAR_IMAGE);
     }
 
-    public void swipeCarType() {
+    public boolean swipeCarType() {
+        String currentCarName = getTextElementById(HomePageUI.CAR_NAME);
         actionMove(920, 1594, 45, 1594);
+        String swipedCarName = getTextElementById(HomePageUI.CAR_NAME);
+        if(currentCarName.equals(swipedCarName)){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public boolean isMaxLuggageDisplayed() {
