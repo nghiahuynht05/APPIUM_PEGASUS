@@ -38,15 +38,18 @@ public class HomePO extends AbstractPage {
 
     public boolean isPUEqualsCurrentLocation() {
         String currentGPS = getTextElementById(HomePageUI.CURRENT_LOCATION_LABEL);
-        if (currentGPS.contains("2 Quang Trung")) {
+        if (currentGPS.contains("271 Nguyễn Văn Linh")) {
             return true;
-        } else if (currentGPS.contains("2 Quang Cự")) {
+        } else if (currentGPS.contains("Tầng 7, tòa nhà Bưu điện")) {
             return true;
-        } else if (currentGPS.contains("3 Đường Phan Chu Trinh")) {
+        } else if (currentGPS.contains("155C Nguyễn Văn Linh")) {
             return true;
         } else if (currentGPS.contains("322 Hải Phòng")) {
             return true;
-        } else {
+        } else if(currentGPS.contains("Tầng 4 tòa nhà Bưu điện")){
+            return true;
+        }
+        else {
             return false;
         }
     }
