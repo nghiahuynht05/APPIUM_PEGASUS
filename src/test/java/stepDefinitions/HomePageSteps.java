@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.assertFalse;
 
 @RunWith(Cucumber.class)
 public class HomePageSteps {
@@ -171,5 +172,21 @@ public class HomePageSteps {
         assertTrue(homePage.isNoteDescriptionDisplayed());
     }
 
+    @And("^I click to select button$")
+    public void iClickToSelectButton() {
+        homePage.clickToSelectButton();
+    }
+
+    @Then("^I check the car type \"([^\"]*)\" is assigned on-demand only$")
+    public void iCheckTheCarTypeIsAssignedOnDemandOnly(String carType) {
+        assertTrue(homePage.isCurrentCarTypeEquals(carType));
+        assertTrue(homePage.isCarTypeOnDemandOnly());
+    }
+
+    @Then("^I check the car type \"([^\"]*)\" is assigned reservation only$")
+    public void iCheckTheCarTypeIsAssignedReservationOnly(String carName){
+        assertTrue(homePage.isCurrentCarTypeEquals(carName));
+        assertTrue(homePage.isCarTypeReservationOnly());
+    }
 
 }

@@ -8,6 +8,7 @@ import org.seleniumhq.jetty9.util.HostMap;
 
 public class HomePO extends AbstractPage {
     private AbstractPage abstractPage;
+    String currentCarName;
 
     public HomePO(AndroidDriver driver) {
         super(driver);
@@ -75,8 +76,8 @@ public class HomePO extends AbstractPage {
     }
 
     public boolean swipeCarType() {
-        String currentCarName = getTextElementById(HomePageUI.CAR_NAME);
-        actionMove(920, 1594, 45, 1594);
+        currentCarName = getTextElementById(HomePageUI.CAR_NAME);
+        actionMove(920, 1594, 145, 1594);
         String swipedCarName = getTextElementById(HomePageUI.CAR_NAME);
         if(currentCarName.equals(swipedCarName)){
             return false;
@@ -109,4 +110,30 @@ public class HomePO extends AbstractPage {
         return checkElementPresentById(HomePageUI.NOTE_DESCRIPTION);
     }
 
+    public void clickToSelectButton(){
+        clickToElementById(HomePageUI.SELECT_CAR_BUTTON);
+    }
+
+    public boolean isCurrentCarTypeEquals(String carName){
+        String currentCar = getTextElementById(HomePageUI.CAR_NAME);
+        if(currentCar.equalsIgnoreCase(carName)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean isCarTypeOnDemandOnly(){
+        String pickuptype = getTextElementById(HomePageUI.PICKUP_TYPE_NOW);
+        if(pickuptype.equalsIgnoreCase("Now")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean isCarTypeReservationOnly(){
+        clickToElementById(HomePageUI.PICKUP_TYPE);
+        return checkElementIsNotPresentById(HomePageUI.BOOK_NOW_BUTTON);
+    }
 }

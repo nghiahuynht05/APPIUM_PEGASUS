@@ -17,7 +17,10 @@ public class HomePageUI {
     public static final String FARE_PER_KM_LABEL = "%stvPerKm";
     public static final String FARE_PER_MINUTE_LABEL = "%stvPerMin";
     public static final String NOTE_DESCRIPTION = "%stvDescription";
-
+    public static final String SELECT_CAR_BUTTON = "%sbtn_select";
+    public static final String PICKUP_TYPE_NOW = "%stv_time";
+    public static final String PICKUP_TYPE = "%simvTime";
+    public static final String BOOK_NOW_BUTTON = "%sbtnNo";
 
     public static final String VIEW_ALL_BUTTON = "%sview_all";
 

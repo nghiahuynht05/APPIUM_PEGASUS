@@ -123,6 +123,18 @@ public class AbstractPage {
         }
     }
 
+    public boolean checkElementIsNotPresentById(String locator){
+        driver.manage().timeouts().implicitlyWait(shortTimeout, TimeUnit.SECONDS);
+        locator = String.format(locator, appPackageId);
+        elements = driver.findElements(By.id(locator));
+        driver.manage().timeouts().implicitlyWait(longTimeout, TimeUnit.SECONDS);
+        if (elements.size() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean checkElementPresentByXpath(String xpathLocator, String attributeValue) {
         driver.manage().timeouts().implicitlyWait(shortTimeout, TimeUnit.SECONDS);
         xpathLocator = String.format(xpathLocator, attributeValue);
@@ -192,5 +204,14 @@ public class AbstractPage {
         action.perform();
     }
 
+
+
+
+
+    public void waitToLoadData(String locator){
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        element = driver.findElement(By.id(locator));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
 }
 

@@ -65,7 +65,7 @@ public class PAX_01_Register extends AbstractTest {
         homePage = new HomePO(driver);
     }
 
-//    @Test
+    @Test
     public void Step_01_SelectServer() {
         abstractPage.sendAppPackage();
 
@@ -82,7 +82,7 @@ public class PAX_01_Register extends AbstractTest {
         assertTrue(loginPage.isLoginPagePresent());
     }
 
-//    @Test
+    @Test
     public void Step_02_Register(){
         printLog("Register - Step 1: Select country phone code");
         loginPage.selectPhoneCode(countryName);
@@ -125,7 +125,7 @@ public class PAX_01_Register extends AbstractTest {
         homePage.isLoginFormDisplayed();
     }
 
-//    @Test
+    @Test
     public void Step_04_LoginWithNewAccount() {
         printLog("Login - Step 2: Select country phone code");
         loginPage.selectPhoneCode(countryName);
