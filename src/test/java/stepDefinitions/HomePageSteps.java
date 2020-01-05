@@ -59,7 +59,7 @@ public class HomePageSteps {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         loginPage = ModuleGeneratorManager.getLoginPage(driver);
-        if(loginPage.isThereHomeButtonPresent()){
+        if (loginPage.isThereHomeButtonPresent()) {
             homePage.logout();
         }
     }
@@ -70,8 +70,8 @@ public class HomePageSteps {
     }
 
     @Given("^I login to Pax app with phone number \"([^\"]*)\"$")
-    public void iLoginToPaxAppWithPhoneNumber(String phoneNumber)  {
-        if(loginPage.isThereHomeButtonPresent()==true){
+    public void iLoginToPaxAppWithPhoneNumber(String phoneNumber) {
+        if (loginPage.isThereHomeButtonPresent()) {
             abstractPage.sleepInSecond(1);
             homePage.logout();
         }
@@ -79,13 +79,13 @@ public class HomePageSteps {
         loginPage.inputToPhoneNumberTextbox(phoneNumber);
         loginPage.clickToAgreeToUAndPolicy();
         loginPage.clickToLoginButton();
-        loginPage.clickToYesNoButton("Yes");
+        abstractPage.clickToDynamicButton("Yes");
         loginPage.inputSMSDefaultCode(defaultCode);
     }
 
     @When("^I am in the Home page$")
     public void iAmInTheHomePage() {
-        if(loginPage.isThereHomeButtonPresent()){
+        if (loginPage.isThereHomeButtonPresent()) {
             assertTrue(loginPage.isThereHomeButtonPresent());
         }
     }
@@ -147,17 +147,17 @@ public class HomePageSteps {
     }
 
     @And("^I should see the base fare$")
-    public void iShouldSeeTheBaseFare(){
+    public void iShouldSeeTheBaseFare() {
         assertTrue(homePage.isBaseFareDisplayed());
     }
 
     @And("^I should see the fee per kilometre$")
-    public void iShouldSeeTheFeePerKilometre(){
+    public void iShouldSeeTheFeePerKilometre() {
         assertTrue(homePage.isFeePerKMDisplayed());
     }
 
     @And("^I should see the fee per minute$")
-    public void iShouldSeeTheFeePerMinute(){
+    public void iShouldSeeTheFeePerMinute() {
         assertTrue(homePage.isFeePerMinuteDisplayed());
     }
 
@@ -180,13 +180,57 @@ public class HomePageSteps {
     @Then("^I check the car type \"([^\"]*)\" is assigned on-demand only$")
     public void iCheckTheCarTypeIsAssignedOnDemandOnly(String carType) {
         assertTrue(homePage.isCurrentCarTypeEquals(carType));
-        assertTrue(homePage.isCarTypeOnDemandOnly());
+        assertTrue(homePage.isPickUpTimeIsNow());
     }
 
     @Then("^I check the car type \"([^\"]*)\" is assigned reservation only$")
-    public void iCheckTheCarTypeIsAssignedReservationOnly(String carName){
+    public void iCheckTheCarTypeIsAssignedReservationOnly(String carName) {
         assertTrue(homePage.isCurrentCarTypeEquals(carName));
         assertTrue(homePage.isCarTypeReservationOnly());
+    }
+
+    @When("^I select car type \"([^\"]*)\"$")
+    public void iSelectCarType(String carName) {
+        homePage.clickToViewAllButton();
+        homePage.selectcarType(carName);
+
+    }
+
+    @Then("^I check the car type \"([^\"]*)\" is assigned both on-demand and reservation$")
+    public void iCheckTheCarTypeIsAssignedBothOnDemandAndReservation(String carName) {
+        assertTrue(homePage.isCarTypeBothOnDemandAndReservation());
+    }
+
+    @And("^I click to Next button$")
+    public void iClickToNextButton() {
+        abstractPage.clickToDynamicButton("Next");
+    }
+
+    @And("^I verify the pickup type is Now$")
+    public void iVerifyThePickUpTypeIsNow() {
+        assertTrue(homePage.isPickUpTimeIsNow());
+    }
+
+    @And("^I press back button$")
+    public void iPressBackButton() {
+        homePage.clickToBackIcon();
+    }
+
+    @And("^I select pickup type is Now$")
+    public void iSelectPickUpTypeIsNow() {
+        homePage.selectPickUpTimeIsNow();
+    }
+
+    @And("^I set the pickup time$")
+    public void iSetThePickUpTime() {
+        homePage.selectPickUpTimeIsDateTime(); //next month
+
+    }
+
+    @Then("^I verify the pickup type is date time$")
+    public void iVerifyThePickUpTypeIsDateTime() {
+        //Make sure that the date time setting on devices is automatically
+        assertTrue(homePage.isPUTimeIsDateTime());
     }
 
 }

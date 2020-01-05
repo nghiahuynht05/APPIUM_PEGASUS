@@ -123,7 +123,7 @@ public class AbstractPage {
         }
     }
 
-    public boolean checkElementIsNotPresentById(String locator){
+    public boolean checkElementIsNotPresentById(String locator) {
         driver.manage().timeouts().implicitlyWait(shortTimeout, TimeUnit.SECONDS);
         locator = String.format(locator, appPackageId);
         elements = driver.findElements(By.id(locator));
@@ -192,11 +192,11 @@ public class AbstractPage {
         sleepInSecond(1);
     }
 
-    public void hideKeyBoard(){
+    public void hideKeyBoard() {
         driver.hideKeyboard();
     }
 
-    public void doubleTapToElement(String locator){
+    public void doubleTapToElement(String locator) {
         locator = String.format(locator, appPackageId);
         element = driver.findElement(By.id(locator));
         TouchActions action = new TouchActions(driver);
@@ -204,14 +204,14 @@ public class AbstractPage {
         action.perform();
     }
 
-
-
-
-
-    public void waitToLoadData(String locator){
+    public void waitToLoadData(String locator) {
         WebDriverWait wait = new WebDriverWait(driver, 60);
         element = driver.findElement(By.id(locator));
         wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void clickToDynamicButton(String textOfButton) {
+        clickToElementByXpath(AbstractPageUI.DYNAIMIC_BUTTON, textOfButton);
     }
 }
 

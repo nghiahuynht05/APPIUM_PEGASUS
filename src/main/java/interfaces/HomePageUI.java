@@ -23,6 +23,10 @@ public class HomePageUI {
     public static final String BOOK_NOW_BUTTON = "%sbtnNo";
 
     public static final String VIEW_ALL_BUTTON = "%sview_all";
+    public static final String CAR_TYPE_DYNAMIC = "//android.widget.TextView[@text='%s']";
+    public static final String BACK_ICON = "%simvBack";
+    public static final String PICKUP_TIME_NEXT_MONTH = "//android.widget.Button[2]";
+
 
     public static final String CURRENT_LOCATION_LABEL = "%stvAddress";
     public static final String BACK_TO_CURRENT_GPS_BUTTON = "%simvLocation";

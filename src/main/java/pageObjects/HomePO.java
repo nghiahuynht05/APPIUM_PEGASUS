@@ -4,7 +4,10 @@ import commons.AbstractPage;
 import interfaces.HomePageUI;
 import interfaces.LoginPageUI;
 import io.appium.java_client.android.AndroidDriver;
-import org.seleniumhq.jetty9.util.HostMap;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class HomePO extends AbstractPage {
     private AbstractPage abstractPage;
@@ -47,12 +50,13 @@ public class HomePO extends AbstractPage {
             return true;
         } else if (currentGPS.contains("322 Hải Phòng")) {
             return true;
-        } else if(currentGPS.contains("Tầng 4 tòa nhà Bưu điện")){
+        } else if (currentGPS.contains("Tầng 4 tòa nhà Bưu điện")) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
+
+
     }
 
     public void moveMap() {
@@ -79,61 +83,84 @@ public class HomePO extends AbstractPage {
         currentCarName = getTextElementById(HomePageUI.CAR_NAME);
         actionMove(920, 1594, 145, 1594);
         String swipedCarName = getTextElementById(HomePageUI.CAR_NAME);
-        if(currentCarName.equals(swipedCarName)){
-            return false;
-        }else{
-            return true;
-        }
+        return currentCarName.equals(swipedCarName);
     }
 
     public boolean isMaxLuggageDisplayed() {
         return checkElementPresentById(HomePageUI.MAX_OF_LUGGAGE);
     }
 
-    public boolean isMinimumFareDisplayed(){
+    public boolean isMinimumFareDisplayed() {
         return checkElementPresentById(HomePageUI.MINIMUM_FARE_LABEL);
     }
 
-    public boolean isBaseFareDisplayed(){
+    public boolean isBaseFareDisplayed() {
         return checkElementPresentById(HomePageUI.BASE_FARE_LABEL);
     }
 
-    public boolean isFeePerKMDisplayed(){
+    public boolean isFeePerKMDisplayed() {
         return checkElementPresentById(HomePageUI.FARE_PER_KM_LABEL);
     }
 
-    public boolean isFeePerMinuteDisplayed(){
+    public boolean isFeePerMinuteDisplayed() {
         return checkElementPresentById(HomePageUI.FARE_PER_MINUTE_LABEL);
     }
 
-    public boolean isNoteDescriptionDisplayed(){
+    public boolean isNoteDescriptionDisplayed() {
         return checkElementPresentById(HomePageUI.NOTE_DESCRIPTION);
     }
 
-    public void clickToSelectButton(){
+    public void clickToSelectButton() {
         clickToElementById(HomePageUI.SELECT_CAR_BUTTON);
     }
 
-    public boolean isCurrentCarTypeEquals(String carName){
+    public boolean isCurrentCarTypeEquals(String carName) {
         String currentCar = getTextElementById(HomePageUI.CAR_NAME);
-        if(currentCar.equalsIgnoreCase(carName)){
-            return true;
-        }else{
-            return false;
-        }
+        return currentCar.equalsIgnoreCase(carName);
     }
 
-    public boolean isCarTypeOnDemandOnly(){
+    public boolean isPickUpTimeIsNow() {
         String pickuptype = getTextElementById(HomePageUI.PICKUP_TYPE_NOW);
-        if(pickuptype.equalsIgnoreCase("Now")){
-            return true;
-        }else{
-            return false;
-        }
+        return pickuptype.equalsIgnoreCase("Now");
     }
 
-    public boolean isCarTypeReservationOnly(){
+    public boolean isCarTypeReservationOnly() {
         clickToElementById(HomePageUI.PICKUP_TYPE);
         return checkElementIsNotPresentById(HomePageUI.BOOK_NOW_BUTTON);
     }
+
+    public void selectcarType(String carName) {
+        clickToElementByXpath(HomePageUI.CAR_TYPE_DYNAMIC, carName);
+    }
+
+    public boolean isCarTypeBothOnDemandAndReservation() {
+        clickToElementById(HomePageUI.PICKUP_TYPE);
+        return checkElementPresentById(HomePageUI.BOOK_NOW_BUTTON);
+    }
+
+    public void clickToBackIcon() {
+        clickToElementById(HomePageUI.BACK_ICON);
+    }
+
+    public void selectPickUpTimeIsNow() {
+        clickToElementById(HomePageUI.PICKUP_TYPE);
+        clickToElementById(HomePageUI.BOOK_NOW_BUTTON);
+    }
+
+    public void selectPickUpTimeIsDateTime() {
+        clickToElementById(HomePageUI.PICKUP_TYPE_NOW);
+        actionMove(235, 891, 235, 718);
+        clickToDynamicButton("Set time");
+    }
+
+    public boolean isPUTimeIsDateTime() {
+        Date now = new Date();
+        String systemTime = new SimpleDateFormat("dd, HH:mm", Locale.ENGLISH).format(now);
+
+        String picUpTime = getTextElementById(HomePageUI.PICKUP_TYPE_NOW);
+        System.out.println("Pick up time: " + picUpTime);
+        System.out.println("System time: " + systemTime);
+        return picUpTime.contains(systemTime);
+    }
+
 }
