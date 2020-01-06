@@ -79,9 +79,3 @@ Feature: Check car type on map
     When I select car type "Sedan"
     Then The Next button should not display
 
-
-#Update flow:
-#    - Call Hooks for each scenario
-#    - noReset = true > Default: Back to home or re-login depends on each test case
-#    - Call change server methods depends on testcase which used
-#    - Link test case: https://docs.google.com/spreadsheets/d/10RMLcSEdgOikRBR7eVmNuK9ETbPx4c-k7DgTu06I1sg/edit#gid=1664833033

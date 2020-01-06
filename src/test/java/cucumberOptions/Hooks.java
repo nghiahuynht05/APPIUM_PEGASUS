@@ -3,6 +3,7 @@ package cucumberOptions;
 import commons.AbstractPage;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import pageObjects.HomePO;
@@ -25,7 +26,7 @@ public class Hooks {
             packageApp = "com.qupworld.pegasuspax";
         }
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("deviceName", "21d5ac3d19037ece");
+        cap.setCapability("deviceName", "SDEDU19B20002425");
         cap.setCapability("platformName", "Android");
         cap.setCapability("platformVersion", "9");
         cap.setCapability("appPackage", packageApp);
@@ -43,5 +44,10 @@ public class Hooks {
         }
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         return driver;
+    }
+
+    @After
+    public void quitDriver(){
+        driver.quit();
     }
 }
