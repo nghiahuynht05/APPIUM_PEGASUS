@@ -8,6 +8,7 @@ public class HomePageUI {
     //MENUS
     public static final String MENU_BUTTONS = "//android.widget.CheckedTextView[contains(@text, '%s')]";
 
+    //HOME SCREEN (CAR TYPE)
     public static final String CAR_IMAGE = "%simvVehicle";
     public static final String CAR_NAME = "%stv_vehicle";
     public static final String MAX_OF_SEAT = "%stv_seat";
@@ -26,8 +27,10 @@ public class HomePageUI {
     public static final String CAR_TYPE_DYNAMIC = "//android.widget.TextView[@text='%s']";
     public static final String BACK_ICON = "%simvBack";
     public static final String PICKUP_TIME_NEXT_MONTH = "//android.widget.Button[2]";
+    public static final String NEXT_BUTTON_SKIP_DO = "%sbtn_skip_des";
 
 
+    //HOME SCREEN (MAP)
     public static final String CURRENT_LOCATION_LABEL = "%stvAddress";
     public static final String BACK_TO_CURRENT_GPS_BUTTON = "%simvLocation";
     public static final String MOVE_MAP_BUTTON = "%saction_map";

@@ -69,6 +69,16 @@ Feature: Check car type on map
     And I set the pickup time
     Then I verify the pickup type is date time
 
+  Scenario: 10 - Check setting Destination is not required
+    Given I am in the Home page
+    When I select car type "Motor"
+    Then The Next button is displayed
+
+  Scenario: 11 - Check setting Destination is required
+    Given I am in the Home page
+    When I select car type "Sedan"
+    Then The Next button should not display
+
 
 #Update flow:
 #    - Call Hooks for each scenario

@@ -163,4 +163,12 @@ public class HomePO extends AbstractPage {
         return picUpTime.contains(systemTime);
     }
 
+    public boolean isNextButtonPresent(){
+        return isElementDisplayedById(HomePageUI.NEXT_BUTTON_SKIP_DO);
+    }
+
+    public boolean isNextButtonNotDisplay(){
+        return checkElementIsNotPresentById(HomePageUI.NEXT_BUTTON_SKIP_DO);
+    }
+
 }

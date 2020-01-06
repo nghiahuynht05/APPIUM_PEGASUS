@@ -233,4 +233,15 @@ public class HomePageSteps {
         assertTrue(homePage.isPUTimeIsDateTime());
     }
 
+    @Then("^The Next button is displayed$")
+    public void theNextButtonIsDisplayed() {
+        assertTrue(homePage.isNextButtonPresent());
+    }
+
+    @Then("^The Next button should not display$")
+    public void theNextButtonShouldNotDisplay() {
+        assertTrue(homePage.isNextButtonNotDisplay());
+    }
+
+
 }
