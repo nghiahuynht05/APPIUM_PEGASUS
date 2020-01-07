@@ -136,7 +136,9 @@ public class LoginPO extends AbstractPage {
     }
 
     public void clickToSkipButton() {
-        clickToElementById(loginPageUI.SKIP_BUTTON);
+        if (checkElementPresentById(loginPageUI.SKIP_BUTTON)) {
+            clickToElementById(loginPageUI.SKIP_BUTTON);
+        }
     }
 
     public boolean isCurrentlyLoggedIn() {

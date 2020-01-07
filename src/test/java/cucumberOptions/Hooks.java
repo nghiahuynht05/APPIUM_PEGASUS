@@ -26,7 +26,7 @@ public class Hooks {
             packageApp = "com.qupworld.pegasuspax";
         }
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("deviceName", "SDEDU19B20002425");
+        cap.setCapability("deviceName", "21d5ac3d19037ece");
         cap.setCapability("platformName", "Android");
         cap.setCapability("platformVersion", "9");
         cap.setCapability("appPackage", packageApp);

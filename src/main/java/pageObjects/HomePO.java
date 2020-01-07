@@ -60,7 +60,7 @@ public class HomePO extends AbstractPage {
     }
 
     public void moveMap() {
-        actionMove(498, 631, 187, 455);
+        actionMove(498, 681, 42, 84);
     }
 
     public boolean isThePUWasChanged() {
