@@ -79,3 +79,7 @@ Feature: Check car type on map
     When I select car type "Sedan"
     Then The Next button should not display
 
+  Scenario: 12 - Setting formatted address - Specific address
+    Given I am in the Home page
+
+
