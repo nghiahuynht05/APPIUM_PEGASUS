@@ -171,4 +171,29 @@ public class HomePO extends AbstractPage {
         return checkElementIsNotPresentById(HomePageUI.NEXT_BUTTON_SKIP_DO);
     }
 
+    public void clickToPUAddress(){
+        clickToElementById(HomePageUI.CURRENT_LOCATION_LABEL);
+    }
+
+    public void inputToPUAddress(String pickupAddress){
+        sendKeyToElementById(HomePageUI.PICKUP_ADDRESS_TEXTBOX, pickupAddress);
+    }
+
+    public void selectPUFromSuggest(String addressContains){
+        clickToElementByXpath(HomePageUI.ADDRESS_SUGGESTED, addressContains);
+    }
+
+    public void inputToDOAddress(String destinationAddress){
+        sendKeyToElementById(HomePageUI.DESTINATION_ADDRESS_TEXTBOX, destinationAddress);
+    }
+
+    public void selectDOFromSuggest(String addressContains){
+        clickToElementByXpath(HomePageUI.ADDRESS_SUGGESTED, addressContains);
+    }
+
+    public boolean isAddressLabelContains(String textContains){
+        String actualAdress = getTextElementById(HomePageUI.CURRENT_LOCATION_LABEL);
+        System.out.println(actualAdress);
+        return actualAdress.contains(textContains);
+    }
 }

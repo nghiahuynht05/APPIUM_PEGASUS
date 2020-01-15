@@ -3,6 +3,7 @@ package stepDefinitions;
 import commons.AbstractPage;
 import commons.AbstractTest;
 import commons.ModuleGeneratorManager;
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -19,6 +20,8 @@ import pageObjects.LoginPO;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
@@ -243,5 +246,32 @@ public class HomePageSteps {
         assertTrue(homePage.isNextButtonNotDisplay());
     }
 
+    @When("^I tap on pick up location label$")
+    public void iTapOnPickUpLocationLabel() {
+        homePage.clickToPUAddress();
+    }
 
+    @And("^I input the pickup location$")
+    public void iInputThePULocation(DataTable addressTable) {
+        List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
+        homePage.inputToPUAddress(pickUp.get(0).get("Pickup location"));
+        driver.hideKeyboard();
+        homePage.selectPUFromSuggest(pickUp.get(0).get("Select address contains"));
+        abstractPage.sleepInSecond(1);
+    }
+
+    @And("^I input the destination$")
+    public void iInputTheDestination(DataTable addressTable) {
+        List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
+        homePage.inputToDOAddress(pickUp.get(0).get("Destination"));
+        driver.hideKeyboard();
+        homePage.selectDOFromSuggest(pickUp.get(0).get("Select address contains"));
+        abstractPage.sleepInSecond(1);
+    }
+
+    @Then("^The pickup location should be displayed as formatted address$")
+    public void thePickupLocationShouldBeDisplayedAsFormattedAddress(DataTable addressTable) {
+        List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
+        assertTrue(homePage.isAddressLabelContains(pickUp.get(0).get("Formatted address")));
+    }
 }

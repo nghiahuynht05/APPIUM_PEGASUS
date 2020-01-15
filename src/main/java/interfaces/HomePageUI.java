@@ -37,4 +37,8 @@ public class HomePageUI {
     public static final String BACK_BUTTON = "//android.widget.ImageButton[@content-desc='Navigate up']";
     public static final String PIN_ICON = "%spinView";
 
+    //ADDRESS
+    public static final String PICKUP_ADDRESS_TEXTBOX = "%stvPickup";
+    public static final String DESTINATION_ADDRESS_TEXTBOX = "%stvDestination";
+    public static final String ADDRESS_SUGGESTED = "//android.widget.TextView[contains(@text, '%s')]";
 }
