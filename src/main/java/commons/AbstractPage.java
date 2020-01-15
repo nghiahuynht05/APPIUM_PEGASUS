@@ -6,15 +6,15 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -212,6 +212,15 @@ public class AbstractPage {
 
     public void clickToDynamicButton(String textOfButton) {
         clickToElementByXpath(AbstractPageUI.DYNAIMIC_BUTTON, textOfButton);
+    }
+
+    public void takeScreenshot(String fileName) {
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(scrFile, new File("C:/Users/tam.nguyen/Desktop/Screenshot/Appium" + fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

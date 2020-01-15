@@ -32,7 +32,7 @@ public class Hooks {
         cap.setCapability("platformVersion", "9");
         cap.setCapability("appPackage", packageApp);
         cap.setCapability("appActivity", "com.qup.pegasus.ui.launch.LauncherActivity");
-        cap.setCapability("automationName", "UiAutomator2");
+        cap.setCapability("automationName", "appium");
         cap.setCapability("autoGrantPermissions", "true");
         cap.setCapability("skipDeviceInitialization", "true");
         cap.setCapability("skipServerInstallation", "true");

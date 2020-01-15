@@ -191,9 +191,11 @@ public class HomePO extends AbstractPage {
         clickToElementByXpath(HomePageUI.ADDRESS_SUGGESTED, addressContains);
     }
 
-    public boolean isAddressLabelContains(String textContains){
-        String actualAdress = getTextElementById(HomePageUI.CURRENT_LOCATION_LABEL);
-        System.out.println(actualAdress);
-        return actualAdress.contains(textContains);
+    public boolean isAddressFormatted(String expectedAddress){
+        String actualAddress = getTextElementById(HomePageUI.PICKUP_ADDRESS_TEXTBOX);
+        System.out.println(actualAddress);
+        return actualAddress.contains(expectedAddress);
     }
+
+
 }

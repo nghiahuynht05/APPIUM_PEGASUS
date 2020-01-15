@@ -271,7 +271,16 @@ public class HomePageSteps {
 
     @Then("^The pickup location should be displayed as formatted address$")
     public void thePickupLocationShouldBeDisplayedAsFormattedAddress(DataTable addressTable) {
+        abstractPage.sleepInSecond(2);
         List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
-        assertTrue(homePage.isAddressLabelContains(pickUp.get(0).get("Formatted address")));
+        assertTrue(homePage.isAddressFormatted(pickUp.get(0).get("Address contains")));
     }
+
+    @And("^I take the screenshot$")
+    public void iTakeTheScreenshot(DataTable addressTable) {
+        List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
+        abstractPage.takeScreenshot("/Address format" + pickUp.get(0).get("File name"));
+    }
+
+
 }
