@@ -51,12 +51,13 @@ public class RegisterAndLoginSteps {
     @Given("^I logout if currently logged in$")
     public void iLogoutIfCurrentlyLoggedIn() {
         abstractPage.sleepInSecond(1);
-        if (loginPage.isCurrentlyLoggedIn()){
+        if (loginPage.isCurrentlyLoggedIn()) {
             homePage.logout();
             loginPage.clickToPhoneNumberTextbox();
-        }else{
+        } else {
             loginPage.clickToPhoneNumberTextbox();
         }
+        abstractPage.sleepInSecond(1);
 
     }
 
@@ -107,7 +108,7 @@ public class RegisterAndLoginSteps {
     }
 
     @And("^I input sms verify code if have$")
-    public void iInputSmsVerifyCodeIfHave(){
+    public void iInputSmsVerifyCodeIfHave() {
         loginPage.inputSMSDefaultCode(defaultCode);
     }
 
