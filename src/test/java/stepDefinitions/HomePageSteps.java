@@ -269,11 +269,17 @@ public class HomePageSteps {
         abstractPage.sleepInSecond(1);
     }
 
-    @Then("^The pickup location should be displayed as formatted address$")
+    @Then("^The pickup location should be displayed as$")
     public void thePickupLocationShouldBeDisplayedAsFormattedAddress(DataTable addressTable) {
         abstractPage.sleepInSecond(2);
         List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
         assertTrue(homePage.isAddressFormatted(pickUp.get(0).get("Address contains")));
+    }
+
+    @And("^I input to pickup textbox$")
+    public void iInputToPickupTextbox(DataTable addressTable) {
+        List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
+        homePage.inputToPUAddress(pickUp.get(0).get("3rd location"));
     }
 
     @And("^I take the screenshot$")
@@ -282,5 +288,11 @@ public class HomePageSteps {
         abstractPage.takeScreenshot("/Address format" + pickUp.get(0).get("File name"));
     }
 
+    @Then("^The 3rd party location should display above the Google location suggestion$")
+    public void the_3rd_party_location_should_display_above_the_google_location_suggestion(DataTable addressTable) {
+        List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
+        assertTrue(homePage.isResultOrdered3rd("0", pickUp.get(0).get("First Address")));
+        assertTrue(homePage.isResultOrdered3rd("1", pickUp.get(0).get("Second Address")));
+    }
 
 }

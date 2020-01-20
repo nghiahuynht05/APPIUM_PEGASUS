@@ -24,7 +24,7 @@ public class LoginPO extends AbstractPage {
     }
 
     public void longPressToDebugArea() {
-        longPressToElementByXpath(loginPageUI.DEBUG_AREA);
+        longPressToElementById(loginPageUI.DEBUG_AREA);
     }
 
     public void inputToPassCodeTextbox(String passCode) {
@@ -107,7 +107,6 @@ public class LoginPO extends AbstractPage {
         } else if (countryName.equalsIgnoreCase("United State")) {
             phoneCode = "+1";
         }
-
         String phoneCodeValue = getTextElementById(loginPageUI.PHONE_CODE_LABEL);
         //Only change country phone code if the current phone code different with the phone code expected
         if (!phoneCodeValue.equals(phoneCode)) {

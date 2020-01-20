@@ -88,9 +88,9 @@ public class AbstractPage {
         waitElementToBeClickableByLocator(driver, element).click();
     }
 
-    public void longPressToElementByXpath(String locator) {
+    public void longPressToElementById(String locator) {
         locator = String.format(locator, appPackageId);
-        element = driver.findElement(By.id(locator));
+        element = driver.findElement(By.xpath(locator));
         actions = new Actions(driver);
         actions.clickAndHold(element);
         actions.perform();
@@ -103,6 +103,12 @@ public class AbstractPage {
         return actualText;
     }
 
+    public String getTextElementByXpath(String xpathLocator, String attributeValue){
+        xpathLocator = String.format(xpathLocator, attributeValue);
+        element = driver.findElement(By.xpath(xpathLocator));
+        return element.getText();
+
+    }
 
     // Internal methods
     public static WebElement waitElementToBeClickableByLocator(

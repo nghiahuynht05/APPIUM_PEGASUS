@@ -55,8 +55,6 @@ public class HomePO extends AbstractPage {
         } else {
             return false;
         }
-
-
     }
 
     public void moveMap() {
@@ -197,5 +195,9 @@ public class HomePO extends AbstractPage {
         return actualAddress.contains(expectedAddress);
     }
 
+    public boolean isResultOrdered3rd(String numberOfResult, String resultValue){
+        String firstAddressResult = getTextElementByXpath(HomePageUI.ADDRESS_RESULT_NUMBER, numberOfResult);
+        return firstAddressResult.contains(resultValue);
+    }
 
 }

@@ -53,11 +53,11 @@ public class RegisterAndLoginSteps {
         abstractPage.sleepInSecond(1);
         if (loginPage.isCurrentlyLoggedIn()) {
             homePage.logout();
+            abstractPage.sleepInSecond(1);
             loginPage.clickToPhoneNumberTextbox();
         } else {
             loginPage.clickToPhoneNumberTextbox();
         }
-        abstractPage.sleepInSecond(1);
 
     }
 
