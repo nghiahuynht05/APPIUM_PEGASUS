@@ -42,4 +42,5 @@ public class HomePageUI {
     public static final String DESTINATION_ADDRESS_TEXTBOX = "%stvDestination";
     public static final String ADDRESS_SUGGESTED = "//android.widget.TextView[contains(@text, '%s')]";
     public static final String ADDRESS_RESULT_NUMBER = "//android.view.ViewGroup[%s]/android.widget.TextView[@resource-id='com.mycar.passenger:id/tvNameLocation']";
+    public static final String DO_PIN = "//android.view.View[@content-desc='Google Map']/android.view.View[2]";
 }

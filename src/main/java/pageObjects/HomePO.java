@@ -197,7 +197,15 @@ public class HomePO extends AbstractPage {
 
     public boolean isResultOrdered3rd(String numberOfResult, String resultValue){
         String firstAddressResult = getTextElementByXpath(HomePageUI.ADDRESS_RESULT_NUMBER, numberOfResult);
+        System.out.println(firstAddressResult);
         return firstAddressResult.contains(resultValue);
     }
 
+    public void clickToDestinationOnHome(){
+        clickToElementById(HomePageUI.DESTINATION_ADDRESS_TEXTBOX);
+    }
+
+    public boolean isDOPinDisplayed(){
+        return checkElementDisplayedByXpath(HomePageUI.DO_PIN);
+    }
 }

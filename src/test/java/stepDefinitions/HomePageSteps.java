@@ -116,7 +116,9 @@ public class HomePageSteps {
 
     @When("^I move map to change PU location$")
     public void iMoveMapToChangePULocation() {
+        abstractPage.sleepInSecond(1);
         homePage.moveMap();
+        abstractPage.sleepInSecond(1);
     }
 
     @And("^I verify the PU was changed$")
@@ -291,8 +293,30 @@ public class HomePageSteps {
     @Then("^The 3rd party location should display above the Google location suggestion$")
     public void the_3rd_party_location_should_display_above_the_google_location_suggestion(DataTable addressTable) {
         List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
-        assertTrue(homePage.isResultOrdered3rd("0", pickUp.get(0).get("First Address")));
-        assertTrue(homePage.isResultOrdered3rd("1", pickUp.get(0).get("Second Address")));
+        assertTrue(homePage.isResultOrdered3rd("1", pickUp.get(0).get("First Address")));
+        assertTrue(homePage.isResultOrdered3rd("2", pickUp.get(0).get("Second Address")));
+    }
+
+    @Then("^The multiple 3rd party location should display correctly$")
+    public void the_multiple_3rd_party_location_should_display_correctly(DataTable addressTable) {
+        List<Map<String, String>> pickUp = addressTable.asMaps(String.class, String.class);
+        assertTrue(homePage.isResultOrdered3rd("2", pickUp.get(0).get("First Address")));
+        assertTrue(homePage.isResultOrdered3rd("3", pickUp.get(0).get("Second Address")));
+    }
+
+    @When("^I tap on Destination textbox$")
+    public void iTapOnDestinationTextbox() {
+        homePage.clickToDestinationOnHome();
+    }
+
+    @Then("^The Destination pin should not displayed$")
+    public void the_destination_pin_should_not_displayed() {
+        assertFalse(homePage.checkElementPresentByXpath(HomePageUI.DO_PIN));
+    }
+
+    @Then("^The Destination pin should be displayed$")
+    public void theDestinationPINShouldBeDisplayed() {
+        assertTrue(homePage.isDOPinDisplayed());
     }
 
 }

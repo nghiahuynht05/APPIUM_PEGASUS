@@ -90,7 +90,7 @@ public class AbstractPage {
 
     public void longPressToElementById(String locator) {
         locator = String.format(locator, appPackageId);
-        element = driver.findElement(By.xpath(locator));
+        element = driver.findElement(By.id(locator));
         actions = new Actions(driver);
         actions.clickAndHold(element);
         actions.perform();
@@ -129,6 +129,12 @@ public class AbstractPage {
         }
     }
 
+    public boolean checkElementDisplayedByXpath(String xpathLocator){
+        driver.manage().timeouts().implicitlyWait(shortTimeout, TimeUnit.SECONDS);
+        element = driver.findElement(By.xpath(xpathLocator));
+        return element.isDisplayed();
+    }
+
     public boolean checkElementIsNotPresentById(String locator) {
         driver.manage().timeouts().implicitlyWait(shortTimeout, TimeUnit.SECONDS);
         locator = String.format(locator, appPackageId);
@@ -149,6 +155,17 @@ public class AbstractPage {
         if (elements.size() > 0) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public boolean checkElementPresentByXpath(String xpathLocator){
+        driver.manage().timeouts().implicitlyWait(shortTimeout, TimeUnit.SECONDS);
+        elements = driver.findElements(By.xpath(xpathLocator));
+        driver.manage().timeouts().implicitlyWait(longTimeout, TimeUnit.SECONDS);
+        if(elements.size()>0){
+            return true;
+        }else{
             return false;
         }
     }
@@ -179,11 +196,9 @@ public class AbstractPage {
 
     public void checkBannerAndClose() {
         boolean bannerDisplay = checkElementPresentById(abstractUI.BANNER);
-        System.out.println(bannerDisplay);
         if (bannerDisplay == true) {
             String locator = String.format(abstractUI.BANNER_CLOSE_BUTTON, appPackageId);
             element = driver.findElement(By.id(locator));
-            System.out.println(element);
             element.click();
         }
     }
