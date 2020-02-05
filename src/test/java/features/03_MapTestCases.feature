@@ -74,6 +74,6 @@ Feature: Check map settings
 
 
 
-#    Note: Socket hang up due to can not execute some step > wait too long >  adb disconnect automatically.
+#    Note: Socket hang up: FIX: Appium > Advance > Allow session override
 #    Review steps flow and waiting between the steps
 #    Was added get page method from PageGenerator for each method calling Page Object classes
