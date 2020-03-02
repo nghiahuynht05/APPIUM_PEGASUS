@@ -7,7 +7,7 @@ Package "pageObject" contains the specific function for each UI. Test case class
 
 2. Configuration:
 To run on real device, you have to connect the Android device to PC. Then change some paramters to config the connection.
-Paramters:
+Parameters:
 - udid: your device ID, check by using "adb devices" on terminal commandline.
 - platformVersion: input the Android version on your device. For ex: 6.1, 9, 10....
 Each time connect the different devices to PC, change these paramters then run the test. Don't change other parameters.
